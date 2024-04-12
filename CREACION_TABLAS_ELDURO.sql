@@ -229,3 +229,12 @@ CREATE TABLE Sesion (
     FOREIGN KEY (Id_aula) REFERENCES Aula(Id_aula) ,
     FOREIGN KEY (Id_grupo) REFERENCES Grupo(Id_grupo)
 );
+
+--TABLA ESPECIALIDAD--
+
+CREATE TABLE Especialidad (
+	Id_profesor VARCHAR (20) NOT NULL,
+	Tipo VARCHAR (20) NOT NULL,
+	PRIMARY KEY (Id_profesor, Tipo),
+	FOREIGN KEY (Id_profesor) REFERENCES Profesor(Id_usuario) ON DELETE RESTRICT ON UPDATE CASCADE
+);
