@@ -48,6 +48,191 @@ INSERT INTO Tarifa (tipo, descripcion, importe, duracion) VALUES ('Silver', 'Tar
 INSERT INTO Tarifa (tipo, descripcion, importe, duracion) VALUES ('Gold', 'Tarifa que le permite al usuario acceder a las instalaciones de musculacion, natacion y disponibilidad de fisioterapeuta gratuito', 61.90, 30);
 INSERT INTO Tarifa (tipo, descripcion, importe, duracion) VALUES ('Titanium', 'Tarifa que le permite al usuario acceder a las instalaciones de musculacion, natacion y disponibilidad de fisioterapeuta gratuito, además de poder disfrutar del restaurante de manera gratuita', 125.40, 30);
 
+INSERT INTO Factura (fecha_expedicion) VALUES ('12-03-2024');
+INSERT INTO Gasto (id_cliente, id_tarifa, fecha, descuento, factura) VALUES ('gemma_sn', 2, '15-04-2024', 10, 1);
+INSERT INTO Gasto (id_cliente, id_tarifa, descuento, factura) VALUES ('gemma_sn', 3, 10, 1);
+
+INSERT INTO Factura (fecha_expedicion) VALUES ('15-03-2024');
+INSERT INTO Gasto (id_cliente, id_tarifa, fecha, descuento, factura) VALUES ('maria_gt', 1, '15-03-2024', 25, 2);
+
+INSERT INTO Factura DEFAULT VALUES;
+INSERT INTO Gasto (id_cliente, id_tarifa, descuento, factura) VALUES ('pablo_tl', 1, 5, 3);
+
+INSERT INTO Factura DEFAULT VALUES;
+INSERT INTO Gasto (id_cliente, id_tarifa, descuento, factura) VALUES ('edgar_mn', 4, 45, 4);
+
+INSERT INTO Contrato (tipo, id_profesor, fecha_firma, tipo_jornada, rango_horario) VALUES ('Fijo', 'hamza_lm', '30-12-2023', 'Completo', 'Mañana');
+INSERT INTO Contrato (tipo, id_profesor, fecha_firma, tipo_jornada, rango_horario) VALUES ('Fijo', 'denis_rc', '12-01-2024', 'Completo', 'Tarde');
+INSERT INTO Contrato (tipo, id_profesor, tipo_jornada, rango_horario) VALUES ('Formacion', 'alfredo_sg', 'Completo', 'Tarde');
+INSERT INTO Contrato (tipo, id_profesor, tipo_jornada, rango_horario) VALUES ('Fijo Discontinuo', 'judith_mm', 'Parcial', 'Mañana');
+
+INSERT INTO Salario (id_profesor, id_contrato, fecha_salario) VALUES ('hamza_lm', 1, '31-01-2024');
+INSERT INTO Salario (id_profesor, id_contrato, fecha_salario) VALUES ('hamza_lm', 1, '29-02-2024');
+INSERT INTO Salario (id_profesor, id_contrato, fecha_salario) VALUES ('hamza_lm', 1, '31-03-2024');
+INSERT INTO Salario (id_profesor, id_contrato) VALUES ('hamza_lm', 1);
+
+INSERT INTO Salario (id_profesor, id_contrato, fecha_salario) VALUES ('denis_rc', 2, '29-02-2024');
+INSERT INTO Salario (id_profesor, id_contrato, fecha_salario) VALUES ('denis_rc', 2, '31-03-2024');
+INSERT INTO Salario (id_profesor, id_contrato) VALUES ('denis_rc', 2);
+
+INSERT INTO Actividad (nombre, descripcion, tipo) VALUES ('Body balance', 'Esta actividad fortalece los múculos y relaja el estrés de la vida diaria', 'Fisico-Mental');
+INSERT INTO Actividad (nombre, descripcion, tipo) VALUES ('Zumba', 'Con esta actividad se realiza cardio usando el baile como principal herramienta', 'Fisica');
+INSERT INTO Actividad (nombre, descripcion, tipo) VALUES ('Pilates', 'Esta actividad fortalece los múculos y relaja el estrés de la vida diaria', 'Fisico-Mental');
+INSERT INTO Actividad (nombre, descripcion, tipo) VALUES ('Yoga', 'Esta actividad fortalece los múculos y relaja el estrés de la vida diaria', 'Fisico-Mental');
+INSERT INTO Actividad (nombre, descripcion, tipo) VALUES ('Body Attack', 'Esta actividad se basa en trabajar movimientos de defensa personal', 'Fisica');
+
+INSERT INTO Grupo (id_actividad) VALUES (2);
+INSERT INTO Grupo (id_actividad) VALUES (3);
+INSERT INTO Grupo (id_actividad) VALUES (1);
+INSERT INTO Grupo (id_actividad) VALUES (4);
+INSERT INTO Grupo (id_actividad) VALUES (4);
+INSERT INTO Grupo (id_actividad) VALUES (5);
+
+INSERT INTO Grupo_tiene_profesor (id_grupo, id_usuario) VALUES (1, 'judith_mm');
+INSERT INTO Grupo_tiene_profesor (id_grupo, id_usuario) VALUES (2, 'denis_rc');
+INSERT INTO Grupo_tiene_profesor (id_grupo, id_usuario) VALUES (3, 'hamza_lm');
+INSERT INTO Grupo_tiene_profesor (id_grupo, id_usuario) VALUES (4, 'hamza_lm');
+INSERT INTO Grupo_tiene_profesor (id_grupo, id_usuario) VALUES (5, 'denis_rc');
+INSERT INTO Grupo_tiene_profesor (id_grupo, id_usuario) VALUES (6, 'alfredo_sg');
+
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (1, 'edgar_mn');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (1, 'pablo_tl');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (1, 'maria_gt');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (1, 'gemma_sn');
+
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (2, 'gemma_sn');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (2, 'pablo_tl');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (2, 'gustavo_cg');
+
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (3, 'gustavo_cg');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (3, 'pablo_tl');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (3, 'edgar_mn');
+
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (4, 'maria_gt');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (4, 'pablo_tl');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (4, 'edgar_mn');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (4, 'gemma_sn');
+
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (5, 'pablo_tl');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (5, 'edgar_mn');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (5, 'maria_gt');
+
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (6, 'gemma_sn');
+INSERT INTO Grupo_tiene_cliente (id_grupo, id_usuario) VALUES (6, 'gustavo_cg');
+
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
+INSERT INTO Aula DEFAULT VALUES;
 
 
+
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Step', '24-03-2024', 'Paso que sirve para hacer ejercicios simulando que subes un paso de escalera');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Step', '24-03-2024', 'Paso que sirve para hacer ejercicios simulando que subes un paso de escalera');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Step', '24-03-2024', 'Paso que sirve para hacer ejercicios simulando que subes un paso de escalera');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Step', '24-03-2024', 'Paso que sirve para hacer ejercicios simulando que subes un paso de escalera');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Step', '24-03-2024', 'Paso que sirve para hacer ejercicios simulando que subes un paso de escalera');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Step', '24-03-2024', 'Paso que sirve para hacer ejercicios simulando que subes un paso de escalera');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (1, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+
+
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (3, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (7, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (8, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Pelota Pilates', '03-12-2023', 'Pelota que sirve para su utilizacion en Pilates, así como en otros deportes');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (10, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Esterilla', '11-02-2024', 'Espuma que sirve para hacer ejercicios en el suelo');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Saco de boxeo', '22-11-2023', 'Saco con arena para poder entrar boxeo u otras artes marciales');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Saco de boxeo', '22-11-2023', 'Saco con arena para poder entrar boxeo u otras artes marciales');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Saco de boxeo', '22-11-2023', 'Saco con arena para poder entrar boxeo u otras artes marciales');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Saco de boxeo', '22-11-2023', 'Saco con arena para poder entrar boxeo u otras artes marciales');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Saco de boxeo', '22-11-2023', 'Saco con arena para poder entrar boxeo u otras artes marciales');
+INSERT INTO Equipamiento (id_aula, nombre, fecha_mantenimiento, descripcion) VALUES (12, 'Saco de boxeo', '22-11-2023', 'Saco con arena para poder entrar boxeo u otras artes marciales');
+
+INSERT INTO Sesion (id_aula, id_grupo, fecha_hora_inicio, fecha_hora_fin, descripcion) VALUES (1, 1, '2024-01-25 09:30:00', '2024-01-25 11:30:00', 'Clase de Zumba');
+INSERT INTO Sesion (id_aula, id_grupo, fecha_hora_inicio, fecha_hora_fin, descripcion) VALUES (3, 2, '2024-01-28 09:30:00', '2024-01-28 12:30:00', 'Clase de Pilates');
+INSERT INTO Sesion (id_aula, id_grupo, fecha_hora_inicio, fecha_hora_fin, descripcion) VALUES (2, 3, '2024-02-16 09:30:00', '2024-02-16 10:30:00', 'Clase de Body Balance');
+INSERT INTO Sesion (id_aula, id_grupo, fecha_hora_inicio, fecha_hora_fin, descripcion) VALUES (9, 4, '2024-03-22 10:30:00', '2024-03-22 12:30:00', 'Clase de Yoga');
+INSERT INTO Sesion (id_aula, id_grupo, fecha_hora_inicio, fecha_hora_fin, descripcion) VALUES (7, 5, '2024-03-23 16:30:00', '2024-03-23 18:30:00', 'Clase de Yoga');
+INSERT INTO Sesion (id_aula, id_grupo, fecha_hora_inicio, fecha_hora_fin, descripcion) VALUES (12, 6, '2024-03-23 17:00:00', '2024-03-23 18:30:00', 'Clase de Body Attack');
+INSERT INTO Sesion (id_aula, id_grupo, fecha_hora_inicio, fecha_hora_fin, descripcion) VALUES (10, 1, '2024-03-23 17:30:00', '2024-03-23 19:30:00', 'Clase de Zumba');
+INSERT INTO Sesion (id_aula, id_grupo, fecha_hora_inicio, fecha_hora_fin, descripcion) VALUES (8, 1, '2024-04-10 09:30:00', '2024-04-10 12:00:00', 'Clase de Zumba');
+INSERT INTO Sesion (id_aula, id_grupo, fecha_hora_inicio, fecha_hora_fin, descripcion) VALUES (1, 4, '2024-04-15 10:30:00', '2024-04-15 12:30:00', 'Clase de Yoga');
+INSERT INTO Sesion (id_aula, id_grupo, fecha_hora_inicio, fecha_hora_fin, descripcion) VALUES (4, 6, '2024-04-15 09:30:00', '2024-04-15 12:00:00', 'Clase de Body Attack');
+
+INSERT INTO Especialidad (id_profesor, tipo) VALUES ('judith_mm', 'Cardio');
+INSERT INTO Especialidad (id_profesor, tipo) VALUES ('judith_mm', 'Yoga');
+INSERT INTO Especialidad (id_profesor, tipo) VALUES ('judith_mm', 'Pilates');
+INSERT INTO Especialidad (id_profesor, tipo) VALUES ('denis_rc', 'Fuerza');
+INSERT INTO Especialidad (id_profesor, tipo) VALUES ('denis_rc', 'Resistencia');
+INSERT INTO Especialidad (id_profesor, tipo) VALUES ('alfredo_sg', 'Zumba');
+INSERT INTO Especialidad (id_profesor, tipo) VALUES ('hamza_lm', 'Cardio');
+INSERT INTO Especialidad (id_profesor, tipo) VALUES ('hamza_lm', 'Flexibilidad');
+INSERT INTO Especialidad (id_profesor, tipo) VALUES ('alfredo_sg', 'Boxeo');
+INSERT INTO Especialidad (id_profesor, tipo) VALUES ('denis_rc', 'Boxeo');
 
