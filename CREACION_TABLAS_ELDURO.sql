@@ -134,8 +134,12 @@ CREATE TABLE Contrato (
     Tipo_jornada VARCHAR(20) CHECK (Tipo_jornada IN ('Completo', 'Parcial')) NOT NULL,
     Rango_horario VARCHAR(15) CHECK (Rango_horario IN ('Mañana', 'Tarde')) NOT NULL,
     PRIMARY KEY (Id_contrato, Id_profesor),
-    FOREIGN KEY (Id_profesor) REFERENCES Profesor(Id_profesor) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (Id_profesor) REFERENCES Profesor(Id_usuario) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+--MODIFICAMOS LA TABLA CONTRATO PARA QUE TENGA UNIQUE EN ID_CONTRATO--
+
+ALTER TABLE Contrato ADD CONSTRAINT UQ_Id_contrato UNIQUE (Id_contrato);
 
 --TABLA DE SALARIO--
 
