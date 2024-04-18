@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//NetBeans//DTD Tool Configuration 1.0//EN" "http://www.netbeans.org/dtds/ToolConfiguration-1_0.dtd">
+<configuration>
+    <tool kind="hints" type="text/x-java">
+        <node name="Braces_DO_WHILE_LOOP">
+            <attribute name="enabled" value="true"/>
+        </node>
+        <node name="org.netbeans.modules.java.hints.AssignmentIssues.nestedAssignment">
+            <attribute name="enabled" value="true"/>
+        </node>
+        <node name="Javac_OVERRIDES">
+            <attribute name="enabled" value="true"/>
+        </node>
+        <node name="org.netbeans.modules.java.hints.NoLoggers">
+            <attribute name="custom-loggers" value="false"/>
+            <attribute name="custom-loggers-list" value=""/>
+        </node>
+        <node name="Braces_WHILE_LOOP">
+            <attribute name="enabled" value="true"/>
+        </node>
+        <node name="Javac_DIVISION_BY_ZERO">
+            <attribute name="enabled" value="true"/>
+        </node>
+        <node name="Braces_FOR_LOOP">
+            <attribute name="enabled" value="true"/>
+            <attribute name="hintSeverity" value="ERROR"/>
+        </node>
+        <node name="Braces_IF">
+            <attribute name="enabled" value="true"/>
+            <attribute name="hintSeverity" value="ERROR"/>
+        </node>
+        <node name="Javac_DEPRECATED">
+            <attribute name="enabled" value="true"/>
+        </node>
+        <node name="org.netbeans.modules.java.hints.jdk.AddUnderscores">
+            <attribute name="size-binary" value="4"/>
+            <attribute name="size-hexadecimal" value="4"/>
+            <attribute name="size-decimal" value="3"/>
+            <attribute name="also-with-underscores" value="false"/>
+        </node>
+        <node name="org.netbeans.modules.java.hints.bugs.BroadCatchBlock.broadCatch">
+            <attribute name="catch.umbrella" value="false"/>
+            <attribute name="catch.common" value="true"/>
+            <attribute name="catch.umbrella.types" value="java.io.IOException, java.sql.SqlException"/>
+        </node>
+    </tool>
+</configuration>
