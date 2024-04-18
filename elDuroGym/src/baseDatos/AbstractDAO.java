@@ -4,28 +4,33 @@
  */
 package baseDatos;
 
+import aplicacion.FachadaAplicacion;
+
+import java.sql.Connection;
+
+
 /**
  *
  * @author alumnogreibd
  */
 public abstract class AbstractDAO {
-   private aplicacion.FachadaAplicacion fa;
-   private java.sql.Connection conexion;
+   private FachadaAplicacion fa;
+   private Connection conexion;
 
    
-    protected java.sql.Connection getConexion(){
+    protected Connection getConexion(){
         return this.conexion;
     }
     
-    protected void setConexion(java.sql.Connection conexion){
+    protected void setConexion(Connection conexion){
         this.conexion=conexion;
     }
    
-   protected void setFachadaAplicacion(aplicacion.FachadaAplicacion fa){
+   protected void setFachadaAplicacion(FachadaAplicacion fa){
        this.fa=fa;
    }
    
-   protected aplicacion.FachadaAplicacion getFachadaAplicacion(){
+   protected FachadaAplicacion getFachadaAplicacion(){
        return fa;
    }
    
