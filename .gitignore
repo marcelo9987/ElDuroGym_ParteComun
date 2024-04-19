@@ -1,3 +1,6 @@
 /ElDuroGym/target/
 /elDuroGym/nbproject/private/
 /elDuroGym/build/
+/out/
+/.idea/
+/ElDuroGym.iml
