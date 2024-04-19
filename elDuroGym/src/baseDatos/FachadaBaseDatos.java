@@ -64,21 +64,10 @@ public class FachadaBaseDatos {
         return daoUsuarios.validarUsuario(idUsuario, clave);
     }
     
-    public void insertarUsuario(Usuario u){
-        daoUsuarios.insertarUsuario(u);
-    }
     
-    public Usuario consultarUsuario(String id){
-        return daoUsuarios.consultarUsuario(id);
-    }
     
-    public void editarUsuario(String id,Usuario u){
-        daoUsuarios.editarUsuario(id,u);
-    }
     
-    public boolean borrarUsuario(String idUsuario){
-        return daoUsuarios.borrarUsuario(idUsuario);
-    }
+    
     
     public java.util.List<Usuario> consultarUsuarios(String id, String nombre){
         return daoUsuarios.consultarUsuarios(id,nombre);
