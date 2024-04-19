@@ -46,6 +46,8 @@ public class VAutentificacion extends javax.swing.JDialog {
         etiquetaFallo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Iniciar Sesión");
+        setType(java.awt.Window.Type.POPUP);
 
         usuario.setText("usuario:");
 
@@ -121,7 +123,7 @@ public class VAutentificacion extends javax.swing.JDialog {
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         // TODO add your handling code here:
         etiquetaFallo.setVisible(false);
-        if (fa.comprobarAutentificacion(textoUsuario.getText(), Arrays.toString(textoClave.getPassword())))
+        if ( fa.comprobarAutentificacion(textoUsuario.getText(), Arrays.toString(textoClave.getPassword())))
            this.dispose();
         else
         {

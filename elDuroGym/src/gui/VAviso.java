@@ -29,7 +29,7 @@ import java.awt.event.ActionEvent;
  *
  * @author Fidel Alejandro
  */
-public class VAviso extends javax.swing.JDialog {
+public final class VAviso extends javax.swing.JDialog {
 
     /**
      * Creates new form VAviso
@@ -42,9 +42,10 @@ public class VAviso extends javax.swing.JDialog {
 
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                        // DO NOTHING NO HACER NADA
                     }
                 });
+        this.pack();
     }
 
     /**
@@ -61,6 +62,7 @@ public class VAviso extends javax.swing.JDialog {
         btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setType(java.awt.Window.Type.POPUP);
 
         textoExcepcion.setColumns(20);
         textoExcepcion.setRows(5);
