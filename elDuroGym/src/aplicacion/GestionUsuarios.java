@@ -27,7 +27,7 @@ public class GestionUsuarios {
 
       u=fbd.validarUsuario(idUsuario, clave);
       if (u!=null){
-          return u.getTipoUsuario()==TipoUsuario.Administrador;
+          return u.tipo()==TipoUsuario.Administrador;
       } else return false;
   }
   
