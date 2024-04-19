@@ -28,25 +28,19 @@ public class GestionUsuarios {
       u=fbd.validarUsuario(idUsuario, clave);
       if (u!=null){
           return u.tipo()==TipoUsuario.Administrador;
-      } else return false;
+      } else {
+          return false;
+      }
   }
   
-  public void nuevoUsuario(Usuario u){
-        this.fbd.insertarUsuario(u);
-    }
+  
     
-  public boolean borrarUsuario(String idUsuario){
-        return this.fbd.borrarUsuario(idUsuario);
-    }    
+   
     
-    public Usuario consultarUsuario(String id){
-        return fbd.consultarUsuario(id);
-    }
+   
     
      
-    public void editarUsuario(String id,Usuario u){
-        this.fbd.editarUsuario(id,u);
-    }
+   
     
     public java.util.List<Usuario> obtenerUsuarios(String id, String nombre){
         return fbd.consultarUsuarios(id,nombre);
