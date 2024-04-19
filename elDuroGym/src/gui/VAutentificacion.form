@@ -91,7 +91,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="textoUsuario">
     </Component>
-    <Component class="javax.swing.JTextField" name="textoClave">
+    <Component class="javax.swing.JPasswordField" name="textoClave">
     </Component>
     <Component class="javax.swing.JButton" name="botonAceptar">
       <Properties>

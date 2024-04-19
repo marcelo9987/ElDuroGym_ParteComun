@@ -4,6 +4,8 @@
  */
 package gui;
 
+import java.util.Arrays;
+
 /**
  *
  * @author alumnogreibd
@@ -38,7 +40,7 @@ public class VAutentificacion extends javax.swing.JDialog {
         usuario = new javax.swing.JLabel();
         clave = new javax.swing.JLabel();
         textoUsuario = new javax.swing.JTextField();
-        textoClave = new javax.swing.JTextField();
+        textoClave = new javax.swing.JPasswordField();
         botonAceptar = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
         etiquetaFallo = new javax.swing.JLabel();
@@ -119,9 +121,14 @@ public class VAutentificacion extends javax.swing.JDialog {
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         // TODO add your handling code here:
         etiquetaFallo.setVisible(false);
-        if (fa.comprobarAutentificacion(textoUsuario.getText(), textoClave.getText()))
+        if (fa.comprobarAutentificacion(textoUsuario.getText(), Arrays.toString(textoClave.getPassword())))
            this.dispose();
-        else etiquetaFallo.setVisible(true);
+        else
+        {
+            fa.muestraExcepcion("Credenciales Incorrectas!");
+            etiquetaFallo.setVisible(true);
+        }
+
     }//GEN-LAST:event_botonAceptarActionPerformed
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
@@ -135,7 +142,7 @@ public class VAutentificacion extends javax.swing.JDialog {
     private javax.swing.JButton botonCancelar;
     private javax.swing.JLabel clave;
     private javax.swing.JLabel etiquetaFallo;
-    private javax.swing.JTextField textoClave;
+    private javax.swing.JPasswordField textoClave;
     private javax.swing.JTextField textoUsuario;
     private javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables

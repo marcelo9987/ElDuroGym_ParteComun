@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package aplicacion;
+package controladores;
 
+import aplicacion.TipoUsuario;
+import aplicacion.Usuario;
 import baseDatos.FachadaBaseDatos;
 import gui.FachadaGui;
 
@@ -27,7 +29,7 @@ public class GestionUsuarios {
 
       u=fbd.validarUsuario(idUsuario, clave);
       if (u!=null){
-          return u.tipo()==TipoUsuario.Administrador;
+          return u.tipo()== TipoUsuario.Administrador;
       } else {
           return false;
       }
