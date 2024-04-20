@@ -4,13 +4,46 @@ package aplicacion;
 
 /**
  * Clase que representa un usuario del sistema
- * @param idUsuario
- * @param clave
- * @param nombre
- * @param direccion
- * @param email
- * @param tipo
- *
- * @see <a href="https://www.baeldung.com/java-record-keyword">uso de records en java moderno</a>
  */
-public record Usuario (String idUsuario,String clave, String nombre, String direccion, String email, TipoUsuario tipo){}
+public final class Usuario
+{
+    private final String idUsuario;
+    private final String clave;
+    private final String nombre;
+    private final String direccion;
+    private final String email;
+    private final TipoUsuario tipo;
+
+public Usuario(String idUsuario, String clave, String nombre, String direccion, String email, TipoUsuario tipo){
+        this.idUsuario = idUsuario;
+        this.clave = clave;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.email = email;
+        this.tipo = tipo;
+    }
+
+    public String idUsuario() {
+        return idUsuario;
+    }
+
+    public String clave() {
+        return clave;
+    }
+
+    public String nombre() {
+        return nombre;
+    }
+
+    public String direccion() {
+        return direccion;
+    }
+
+    public String email() {
+        return email;
+    }
+
+    public TipoUsuario tipo() {
+        return tipo;
+    }
+}
