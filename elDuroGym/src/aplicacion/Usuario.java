@@ -8,19 +8,22 @@ package aplicacion;
 public final class Usuario
 {
     private final String idUsuario;
-    private final String clave;
     private final String nombre;
-    private final String direccion;
+    private final String dni;
     private final String email;
-    private final TipoUsuario tipo;
+    private final String direccion;
+    private final String nickname;
+    private final String clave;
+    
 
-public Usuario(String idUsuario, String clave, String nombre, String direccion, String email, TipoUsuario tipo){
+public Usuario(String idUsuario, String clave, String nombre, String direccion, String email, String dni, String nickname){
         this.idUsuario = idUsuario;
         this.clave = clave;
         this.nombre = nombre;
         this.direccion = direccion;
         this.email = email;
-        this.tipo = tipo;
+        this.dni = dni;
+        this.nickname = nickname;
     }
 
     public String idUsuario() {
@@ -43,7 +46,11 @@ public Usuario(String idUsuario, String clave, String nombre, String direccion, 
         return email;
     }
 
-    public TipoUsuario tipo() {
-        return tipo;
+    public String dni() {
+        return dni;
+    }
+    
+    public String nickname() {
+        return nickname;
     }
 }
