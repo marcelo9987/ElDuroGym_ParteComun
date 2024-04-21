@@ -4,6 +4,8 @@
  */
 package gui;
 
+import aplicacion.TipoUsuario;
+
 import javax.swing.*;
 
 /**
@@ -32,8 +34,8 @@ public class VUsuario extends javax.swing.JFrame{
     private void initComponents() {
 
         VAdmin = new javax.swing.JFrame();
-        jPanel2 = new javax.swing.JPanel();
-        comboSeleccionTipoUsuario1 = new javax.swing.JComboBox<>();
+        JPanelAdmin = new javax.swing.JPanel();
+        comboSeleccionTipoUsuarioDesdeAdmin = new javax.swing.JComboBox<>();
         btnSalir1 = new java.awt.Button();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -41,32 +43,48 @@ public class VUsuario extends javax.swing.JFrame{
         jButton4 = new javax.swing.JButton();
         VProfesor = new javax.swing.JFrame();
         jPanel3 = new javax.swing.JPanel();
-        comboSeleccionTipoUsuario2 = new javax.swing.JComboBox<>();
+        comboSeleccionTipoUsuarioDesdeProfesor = new javax.swing.JComboBox<>();
         btnSalir2 = new java.awt.Button();
-        jPanel1 = new javax.swing.JPanel();
-        comboSeleccionTipoUsuario = new javax.swing.JComboBox<>();
+        JPanelCliente = new javax.swing.JPanel();
+        comboSeleccionTipoUsuarioDesdeUsuario = new javax.swing.JComboBox<>();
         btnSalir = new java.awt.Button();
+        txtNumeroGrupo = new javax.swing.JTextField();
+        txtNombreAula = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        labelNGrupoCliente = new javax.swing.JLabel();
+        labelAulaCliente = new javax.swing.JLabel();
+        jLabelFecha = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         VAdmin.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         VAdmin.setTitle("Menú Principal");
         VAdmin.setMinimumSize(new java.awt.Dimension(100, 100));
         VAdmin.setName("lienzoPrincipal"); // NOI18N
-        VAdmin.setType(java.awt.Window.Type.UTILITY);
 
-        jPanel2.setBackground(new java.awt.Color(53, 126, 199));
+        JPanelAdmin.setBackground(new java.awt.Color(53, 126, 199));
 
-        comboSeleccionTipoUsuario1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Administrador", "Profesor" }));
-        comboSeleccionTipoUsuario1.setSelectedIndex(1);
-        comboSeleccionTipoUsuario1.setName("comboTipoUsuario"); // NOI18N
-        comboSeleccionTipoUsuario1.addActionListener(new java.awt.event.ActionListener() {
+        comboSeleccionTipoUsuarioDesdeAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Profesor", "Administrador" }));
+        comboSeleccionTipoUsuarioDesdeAdmin.setSelectedIndex(2);
+        comboSeleccionTipoUsuarioDesdeAdmin.setToolTipText("Selecciona que vista quieres usar");
+        comboSeleccionTipoUsuarioDesdeAdmin.setName("comboTipoUsuario"); // NOI18N
+        comboSeleccionTipoUsuarioDesdeAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboSeleccionTipoUsuario1ActionPerformed(evt);
+                comboSeleccionTipoUsuarioDesdeAdminActionPerformed(evt);
             }
         });
 
         btnSalir1.setActionCommand("btnSalir");
         btnSalir1.setBackground(new java.awt.Color(255, 0, 0));
-        btnSalir1.setLabel("button1");
+        btnSalir1.setLabel("Salir");
+        btnSalir1.setName("btnAdminSalir"); // NOI18N
+        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("jButton1");
 
@@ -76,45 +94,45 @@ public class VUsuario extends javax.swing.JFrame{
 
         jButton4.setText("jButton4");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout JPanelAdminLayout = new javax.swing.GroupLayout(JPanelAdmin);
+        JPanelAdmin.setLayout(JPanelAdminLayout);
+        JPanelAdminLayout.setHorizontalGroup(
+            JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelAdminLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(comboSeleccionTipoUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(JPanelAdminLayout.createSequentialGroup()
+                        .addComponent(comboSeleccionTipoUsuarioDesdeAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 474, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(JPanelAdminLayout.createSequentialGroup()
                 .addGap(153, 153, 153)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton3)
                     .addComponent(jButton1))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPanelAdminLayout.createSequentialGroup()
                         .addGap(115, 115, 115)
                         .addComponent(jButton2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(JPanelAdminLayout.createSequentialGroup()
                         .addGap(126, 126, 126)
                         .addComponent(jButton4)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        JPanelAdminLayout.setVerticalGroup(
+            JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelAdminLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(comboSeleccionTipoUsuario1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboSeleccionTipoUsuarioDesdeAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(64, 64, 64)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
@@ -122,38 +140,48 @@ public class VUsuario extends javax.swing.JFrame{
                 .addContainerGap())
         );
 
+        btnSalir1.getAccessibleContext().setAccessibleDescription("Botón que sale de la apliación");
+
         javax.swing.GroupLayout VAdminLayout = new javax.swing.GroupLayout(VAdmin.getContentPane());
         VAdmin.getContentPane().setLayout(VAdminLayout);
         VAdminLayout.setHorizontalGroup(
             VAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JPanelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         VAdminLayout.setVerticalGroup(
             VAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JPanelAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        JPanelAdmin.getAccessibleContext().setAccessibleName("JPanel administrador");
+        JPanelAdmin.getAccessibleContext().setAccessibleDescription("panel que contiene los componentes de las ventanas para administradores");
 
         VProfesor.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         VProfesor.setTitle("Menú Principal");
         VProfesor.setMinimumSize(new java.awt.Dimension(100, 100));
         VProfesor.setName("lienzoPrincipal"); // NOI18N
         VProfesor.setPreferredSize(new java.awt.Dimension(600, 500));
-        VProfesor.setType(java.awt.Window.Type.UTILITY);
 
         jPanel3.setBackground(new java.awt.Color(53, 126, 199));
 
-        comboSeleccionTipoUsuario2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Administrador", "Profesor" }));
-        comboSeleccionTipoUsuario2.setSelectedIndex(2);
-        comboSeleccionTipoUsuario2.setName("comboTipoUsuario"); // NOI18N
-        comboSeleccionTipoUsuario2.addActionListener(new java.awt.event.ActionListener() {
+        comboSeleccionTipoUsuarioDesdeProfesor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Profesor", "Administrador" }));
+        comboSeleccionTipoUsuarioDesdeProfesor.setSelectedIndex(1);
+        comboSeleccionTipoUsuarioDesdeProfesor.setToolTipText("Seleccione que vista quiere ver");
+        comboSeleccionTipoUsuarioDesdeProfesor.setName("comboTipoUsuario"); // NOI18N
+        comboSeleccionTipoUsuarioDesdeProfesor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboSeleccionTipoUsuario2ActionPerformed(evt);
+                comboSeleccionTipoUsuarioDesdeProfesorActionPerformed(evt);
             }
         });
 
         btnSalir2.setActionCommand("btnSalir");
         btnSalir2.setBackground(new java.awt.Color(255, 0, 0));
-        btnSalir2.setLabel("button1");
+        btnSalir2.setLabel("Salir");
+        btnSalir2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalir2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -166,7 +194,7 @@ public class VUsuario extends javax.swing.JFrame{
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(comboSeleccionTipoUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(comboSeleccionTipoUsuarioDesdeProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 474, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -174,11 +202,13 @@ public class VUsuario extends javax.swing.JFrame{
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(comboSeleccionTipoUsuario2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboSeleccionTipoUsuarioDesdeProfesor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        btnSalir2.getAccessibleContext().setAccessibleDescription("Permite salir de la aplicación");
 
         javax.swing.GroupLayout VProfesorLayout = new javax.swing.GroupLayout(VProfesor.getContentPane());
         VProfesor.getContentPane().setLayout(VProfesorLayout);
@@ -196,62 +226,143 @@ public class VUsuario extends javax.swing.JFrame{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
         setMinimumSize(new java.awt.Dimension(100, 100));
+        setModalExclusionType(java.awt.Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         setName("lienzoPrincipal"); // NOI18N
         setPreferredSize(new java.awt.Dimension(600, 500));
-        setType(java.awt.Window.Type.UTILITY);
 
-        jPanel1.setBackground(new java.awt.Color(53, 126, 199));
+        JPanelCliente.setBackground(new java.awt.Color(53, 126, 199));
 
-        comboSeleccionTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Administrador", "Profesor" }));
-        comboSeleccionTipoUsuario.setName("comboTipoUsuario"); // NOI18N
-        comboSeleccionTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
+        comboSeleccionTipoUsuarioDesdeUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Profesor", "Administrador" }));
+        comboSeleccionTipoUsuarioDesdeUsuario.setToolTipText("Seleccione que vista desea ver");
+        comboSeleccionTipoUsuarioDesdeUsuario.setName("comboTipoUsuario"); // NOI18N
+        comboSeleccionTipoUsuarioDesdeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboSeleccionTipoUsuarioActionPerformed(evt);
+                comboSeleccionTipoUsuarioDesdeUsuarioActionPerformed(evt);
             }
         });
 
         btnSalir.setActionCommand("btnSalir");
         btnSalir.setBackground(new java.awt.Color(255, 0, 0));
-        btnSalir.setLabel("button1");
+        btnSalir.setLabel("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        txtNumeroGrupo.setToolTipText("Número del grupo a buscar");
+        txtNumeroGrupo.setActionCommand("<Not Set>");
+
+        txtNombreAula.setToolTipText("Aula en la que se realiza la actividad");
+        txtNombreAula.setName("txtAula"); // NOI18N
+
+        jTextField3.setToolTipText("Introduce aquí la fecha a buscar");
+        jTextField3.setName("txtFecha"); // NOI18N
+
+        jTextField4.setText("jTextField1");
+
+        jTextField5.setText("jTextField1");
+
+        labelNGrupoCliente.setText("Nº de grupo");
+
+        labelAulaCliente.setText("Aula");
+
+        jLabelFecha.setText("Fecha");
+        jLabelFecha.setName("jLabelFecha"); // NOI18N
+
+        jLabel2.setText("jLabel2");
+
+        jLabel3.setText("jLabel3");
+
+        javax.swing.GroupLayout JPanelClienteLayout = new javax.swing.GroupLayout(JPanelCliente);
+        JPanelCliente.setLayout(JPanelClienteLayout);
+        JPanelClienteLayout.setHorizontalGroup(
+            JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(comboSeleccionTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 474, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPanelClienteLayout.createSequentialGroup()
+                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(JPanelClienteLayout.createSequentialGroup()
+                                .addComponent(comboSeleccionTipoUsuarioDesdeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createSequentialGroup()
+                        .addGap(0, 171, Short.MAX_VALUE)
+                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumeroGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelNGrupoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(JPanelClienteLayout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(labelAulaCliente)
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabelFecha))
+                            .addGroup(JPanelClienteLayout.createSequentialGroup()
+                                .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(209, 209, 209))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        JPanelClienteLayout.setVerticalGroup(
+            JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanelClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(comboSeleccionTipoUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
+                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboSeleccionTipoUsuarioDesdeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelNGrupoCliente)
+                        .addComponent(labelAulaCliente)
+                        .addComponent(jLabelFecha)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNumeroGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(4, 4, 4)
+                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        comboSeleccionTipoUsuario.getAccessibleContext().setAccessibleName("desplegableTipoAcceso");
-        comboSeleccionTipoUsuario.getAccessibleContext().setAccessibleDescription("Permite escoger el tipo de acceso");
+        comboSeleccionTipoUsuarioDesdeUsuario.getAccessibleContext().setAccessibleName("desplegableTipoAcceso");
+        comboSeleccionTipoUsuarioDesdeUsuario.getAccessibleContext().setAccessibleDescription("Permite escoger el tipo de acceso");
+        btnSalir.getAccessibleContext().setAccessibleDescription("Sale de la aplicación");
+        txtNumeroGrupo.getAccessibleContext().setAccessibleName("CampoBúsquedaGrupo");
+        txtNombreAula.getAccessibleContext().setAccessibleName("CampoBúsquedaGrupo");
+        txtNombreAula.getAccessibleContext().setAccessibleDescription("Número del grupo a buscar");
+        jTextField3.getAccessibleContext().setAccessibleName("Entrada Fecha a buscar");
+        labelAulaCliente.getAccessibleContext().setAccessibleDescription("Etiqueta en la que se lee \"Aula\". Debajo se puede insertar un nombre de aula para realizar una búsqueda");
+        jLabelFecha.getAccessibleContext().setAccessibleDescription("Etiqueta en la que pone fecha. Se espera la fecha a buscar debajo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JPanelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(JPanelCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        JPanelCliente.getAccessibleContext().setAccessibleName("Panel Cliente");
+        JPanelCliente.getAccessibleContext().setAccessibleDescription("Panel que contiene los componentes que verán los clientes");
 
         getAccessibleContext().setAccessibleDescription("Pantall del menú principal");
         getAccessibleContext().setAccessibleParent(this);
@@ -267,59 +378,119 @@ public class VUsuario extends javax.swing.JFrame{
                 VAdmin.setVisible(false);
                 VProfesor.setVisible(false);
                 this.pack();
-                comboSeleccionTipoUsuario.setSelectedIndex(0);
-                comboSeleccionTipoUsuario1.setSelectedIndex(0);
-                comboSeleccionTipoUsuario2.setSelectedIndex(0);
+                comboBox.setSelectedIndex(0);
+                comboSeleccionTipoUsuarioDesdeUsuario.setSelectedIndex(0);
+                comboSeleccionTipoUsuarioDesdeAdmin.setSelectedIndex(0);
+                comboSeleccionTipoUsuarioDesdeProfesor.setSelectedIndex(0);
                 break;
+
             case 1:
-                this.setVisible(false);
-                VAdmin.setVisible(true);
-                VProfesor.setVisible(false);
-                VAdmin.pack();
-                comboBox.setSelectedIndex(1);
-                comboSeleccionTipoUsuario1.setSelectedIndex(1);
-                comboSeleccionTipoUsuario2.setSelectedIndex(1);
-                break;
-            case 2:
                 this.setVisible(false);
                 VAdmin.setVisible(false);
                 VProfesor.setVisible(true);
                 VProfesor.pack();
-                comboSeleccionTipoUsuario.setSelectedIndex(2);
-                comboSeleccionTipoUsuario1.setSelectedIndex(2);
-                comboSeleccionTipoUsuario2.setSelectedIndex(2);
+                comboBox.setSelectedIndex(1);
+                comboSeleccionTipoUsuarioDesdeUsuario.setSelectedIndex(1);
+                comboSeleccionTipoUsuarioDesdeAdmin.setSelectedIndex(1);
+                comboSeleccionTipoUsuarioDesdeProfesor.setSelectedIndex(1);
                 break;
+
+            case 2:
+                this.setVisible(false);
+                VAdmin.setVisible(true);
+                VProfesor.setVisible(false);
+                VAdmin.pack();
+                comboBox.setSelectedIndex(2);
+                comboSeleccionTipoUsuarioDesdeUsuario.setSelectedIndex(2);
+                comboSeleccionTipoUsuarioDesdeAdmin.setSelectedIndex(2);
+                comboSeleccionTipoUsuarioDesdeProfesor.setSelectedIndex(2);
+                break;
+
         }
     }
     
-    private void comboSeleccionTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionTipoUsuarioActionPerformed
-        seleccionarPantalla(comboSeleccionTipoUsuario);
-    }//GEN-LAST:event_comboSeleccionTipoUsuarioActionPerformed
+    private void comboSeleccionTipoUsuarioDesdeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionTipoUsuarioDesdeUsuarioActionPerformed
+        seleccionarPantalla(comboSeleccionTipoUsuarioDesdeUsuario);
+    }//GEN-LAST:event_comboSeleccionTipoUsuarioDesdeUsuarioActionPerformed
 
-    private void comboSeleccionTipoUsuario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionTipoUsuario1ActionPerformed
-        seleccionarPantalla(comboSeleccionTipoUsuario1);
-    }//GEN-LAST:event_comboSeleccionTipoUsuario1ActionPerformed
+    private void comboSeleccionTipoUsuarioDesdeAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionTipoUsuarioDesdeAdminActionPerformed
+        seleccionarPantalla(comboSeleccionTipoUsuarioDesdeAdmin);
+    }//GEN-LAST:event_comboSeleccionTipoUsuarioDesdeAdminActionPerformed
 
-    private void comboSeleccionTipoUsuario2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionTipoUsuario2ActionPerformed
-        seleccionarPantalla(comboSeleccionTipoUsuario2);
-    }//GEN-LAST:event_comboSeleccionTipoUsuario2ActionPerformed
+    private void comboSeleccionTipoUsuarioDesdeProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSeleccionTipoUsuarioDesdeProfesorActionPerformed
+        seleccionarPantalla(comboSeleccionTipoUsuarioDesdeProfesor);
+    }//GEN-LAST:event_comboSeleccionTipoUsuarioDesdeProfesorActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // Ahora toca salir
+        salidaEstandarUsuario();
+    }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
+        salidaEstandarUsuario();
+    }//GEN-LAST:event_btnSalir2ActionPerformed
+
+    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
+        salidaEstandarUsuario();
+    }//GEN-LAST:event_btnSalir1ActionPerformed
+
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel JPanelAdmin;
+    private javax.swing.JPanel JPanelCliente;
     private javax.swing.JFrame VAdmin;
     private javax.swing.JFrame VProfesor;
     private java.awt.Button btnSalir;
     private java.awt.Button btnSalir1;
     private java.awt.Button btnSalir2;
-    private javax.swing.JComboBox<String> comboSeleccionTipoUsuario;
-    private javax.swing.JComboBox<String> comboSeleccionTipoUsuario1;
-    private javax.swing.JComboBox<String> comboSeleccionTipoUsuario2;
+    private javax.swing.JComboBox<String> comboSeleccionTipoUsuarioDesdeAdmin;
+    private javax.swing.JComboBox<String> comboSeleccionTipoUsuarioDesdeProfesor;
+    private javax.swing.JComboBox<String> comboSeleccionTipoUsuarioDesdeUsuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelFecha;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel labelAulaCliente;
+    private javax.swing.JLabel labelNGrupoCliente;
+    private javax.swing.JTextField txtNombreAula;
+    private javax.swing.JTextField txtNumeroGrupo;
     // End of variables declaration//GEN-END:variables
+
+    public void actualizarNivelAcceso(TipoUsuario nivelAcceso)
+    {
+        switch(nivelAcceso)
+        {
+            case Cliente:
+                comboSeleccionTipoUsuarioDesdeUsuario.setSelectedIndex(0);
+                comboSeleccionTipoUsuarioDesdeUsuario.setModel(new DefaultComboBoxModel<>(new String[] { "Cliente" }));
+                comboSeleccionTipoUsuarioDesdeAdmin.setModel(new DefaultComboBoxModel<>(new String[] { "Cliente" }));
+                comboSeleccionTipoUsuarioDesdeProfesor.setModel(new DefaultComboBoxModel<>(new String[] { "Cliente" }));
+                break;
+            case Administrador:
+                // DO - NOTHING
+                // No hay que hacer nada, ya que el administrador puede ver todas las opciones
+                break;
+            case Profesor:
+                comboSeleccionTipoUsuarioDesdeUsuario.setSelectedIndex(0);
+                comboSeleccionTipoUsuarioDesdeUsuario.setModel(new DefaultComboBoxModel<>(new String[] {"Cliente", "Profesor" }));
+                comboSeleccionTipoUsuarioDesdeProfesor.setModel(new DefaultComboBoxModel<>(new String[] {"Cliente", "Profesor" }));
+                break;
+        }
+    }
+
+    private void salidaEstandarUsuario() {
+        this.dispose();
+        System.out.println("INFO: Saliendo de la aplicación. Nada que reportar.");
+        System.exit(0);
+    }
+
 }

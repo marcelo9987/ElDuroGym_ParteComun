@@ -24,15 +24,17 @@ public class GestionUsuarios {
     }  
     
     
-  public Boolean comprobarAutentificacion(String idUsuario, String clave){
+  public TipoUsuario comprobarAutentificacion(String nickname, String clave){
       Usuario u;
 
-      u=fbd.validarUsuario(idUsuario, clave);
-      if (u!=null){
-          return u.tipo()== TipoUsuario.Administrador;
-      } else {
-          return false;
-      }
+      u=fbd.validarUsuario(nickname, clave);
+      if(u==null) return TipoUsuario.NO_DEFINIDO;
+      return switch (u.getClass().getSimpleName()) {
+          case "Administrador" -> TipoUsuario.Administrador;
+          case "Cliente" -> TipoUsuario.Cliente;
+          case "Profesor" -> TipoUsuario.Profesor;
+          default -> TipoUsuario.NO_DEFINIDO;
+      };
   }
   
   
