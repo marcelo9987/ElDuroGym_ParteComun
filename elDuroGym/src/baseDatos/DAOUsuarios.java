@@ -93,7 +93,7 @@ public class DAOUsuarios extends AbstractDAO {
     
 
     public java.util.List<Usuario> consultarUsuarios(String id, String nombre){
-        java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
+        java.util.List<Usuario> resultado = new java.util.ArrayList<>();
         Usuario usuarioActual;
         Connection con;
         PreparedStatement stmUsuarios = null;
