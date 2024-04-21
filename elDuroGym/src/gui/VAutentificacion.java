@@ -124,7 +124,9 @@ public class VAutentificacion extends javax.swing.JDialog {
         // TODO add your handling code here:
         etiquetaFallo.setVisible(false);
         if ( fa.comprobarAutentificacion(textoUsuario.getText(), Arrays.toString(textoClave.getPassword())))
-           this.dispose();
+        {
+            this.dispose();
+        }
         else
         {
             fa.muestraExcepcion("Credenciales Incorrectas!");

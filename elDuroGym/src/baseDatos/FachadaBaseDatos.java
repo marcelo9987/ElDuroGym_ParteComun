@@ -43,7 +43,7 @@ public class FachadaBaseDatos {
                     configuracion.getProperty("puerto")+"/"+
                     configuracion.getProperty("baseDatos"),
                     usuario);
-
+        this.daoUsuarios = new DAOUsuarios(conexion,fa);
 
         } catch (FileNotFoundException f){
             System.out.println(f.getMessage());
@@ -61,7 +61,8 @@ public class FachadaBaseDatos {
         
     }
     public Usuario validarUsuario(String idUsuario, String clave){
-        return daoUsuarios.validarUsuario(idUsuario, clave);
+//        return daoUsuarios.validarUsuario(idUsuario, clave);
+        return null;
     }
     
     
