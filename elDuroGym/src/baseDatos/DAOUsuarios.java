@@ -17,6 +17,7 @@ public class DAOUsuarios extends AbstractDAO {
         super.setFachadaAplicacion(fa);
     }
 
+   //Miramos si está en persona
     public Usuario validarUsuario(String idUsuario, String clave){
         Usuario resultado=null;
         Connection con;
@@ -26,17 +27,17 @@ public class DAOUsuarios extends AbstractDAO {
         con=this.getConexion();
 
         try {
-        stmUsuario=con.prepareStatement("select id_usuario, clave, nombre, direccion, email, tipo_usuario "+
-                                        "from usuario "+
-                                        "where id_usuario = ? and clave = ?");
+        stmUsuario=con.prepareStatement("select id_persona, nombre, dni, correo, domicilio, nickname, contrasenha "+
+                                        "from persona "+
+                                        "where id_persona = ? and contrasenha = ?");
         stmUsuario.setString(1, idUsuario);
         stmUsuario.setString(2, clave);
         rsUsuario=stmUsuario.executeQuery();
         if (rsUsuario.next())
         {
-            resultado = new Usuario(rsUsuario.getString("id_usuario"), rsUsuario.getString("clave"),
-                                      rsUsuario.getString("nombre"), rsUsuario.getString("direccion"),
-                                      rsUsuario.getString("email"), TipoUsuario.valueOf(rsUsuario.getString("tipo_usuario")));
+            resultado = new Usuario(rsUsuario.getString("id_persona"), rsUsuario.getString("contrasenha"),
+                                      rsUsuario.getString("nombre"), rsUsuario.getString("domicilio"),
+                                      rsUsuario.getString("correo"),rsUsuario.getString("dni"), rsUsuario.getString("nickname"));
 
         }
         } catch (SQLException e){
@@ -58,9 +59,9 @@ public class DAOUsuarios extends AbstractDAO {
         
         con = this.getConexion();
         
-        String consulta = "select id_usuario, nombre, clave, email, direccion, tipo_usuario " + 
-                                "from usuario as u " +
-                                "where id_usuario like ? " +
+        String consulta = "select id_persona, nombre, dni, correo, domicilio, nickname, contrasenha "+
+                                "from personna as u " +
+                                "where id_persona like ? " +
                                 " and nombre like ?";
 
         try{
@@ -70,8 +71,10 @@ public class DAOUsuarios extends AbstractDAO {
             rsUsuarios = stmUsuarios.executeQuery();
             
             while (rsUsuarios.next()){
-                usuarioActual = new Usuario(rsUsuarios.getString("id_usuario"),rsUsuarios.getString("clave"),
-                rsUsuarios.getString("nombre"),rsUsuarios.getString("direccion"),rsUsuarios.getString("email"),TipoUsuario.valueOf(rsUsuarios.getString("tipo_usuario")));
+                usuarioActual = new Usuario(rsUsuarios.getString("id_persona"), rsUsuarios.getString("contrasenha"),
+                                      rsUsuarios.getString("nombre"), rsUsuarios.getString("domicilio"),
+                                      rsUsuarios.getString("correo"),rsUsuarios.getString("dni"), rsUsuarios.getString("nickname"));
+
                 resultado.add(usuarioActual);
             }
         }
