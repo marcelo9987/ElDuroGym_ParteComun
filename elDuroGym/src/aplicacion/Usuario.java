@@ -14,7 +14,7 @@ public abstract class Usuario
     private final String direccion;
     private final String nickname;
     private final String clave;
-    
+
 
 public Usuario(String idUsuario, String clave, String nombre, String direccion, String email, String dni, String nickname){
         this.idUsuario = idUsuario;
@@ -53,4 +53,5 @@ public Usuario(String idUsuario, String clave, String nombre, String direccion, 
     public String nickname() {
         return nickname;
     }
+
 }
