@@ -51,20 +51,24 @@ public class VUsuario extends javax.swing.JFrame{
         txtNumeroGrupo = new javax.swing.JTextField();
         txtNombreAula = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         labelNGrupoCliente = new javax.swing.JLabel();
         labelAulaCliente = new javax.swing.JLabel();
         jLabelFecha = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelHora = new javax.swing.JLabel();
+        txtNumeroGrupo1 = new javax.swing.JTextField();
+        labelProfesor = new javax.swing.JLabel();
+        txtProfesor = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         VAdmin.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         VAdmin.setTitle("Menú Principal");
         VAdmin.setMinimumSize(new java.awt.Dimension(100, 100));
         VAdmin.setName("lienzoPrincipal"); // NOI18N
+        VAdmin.setPreferredSize(new java.awt.Dimension(600, 500));
 
         JPanelAdmin.setBackground(new java.awt.Color(53, 126, 199));
+        JPanelAdmin.setPreferredSize(new java.awt.Dimension(600, 500));
 
         comboSeleccionTipoUsuarioDesdeAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Profesor", "Administrador" }));
         comboSeleccionTipoUsuarioDesdeAdmin.setSelectedIndex(2);
@@ -87,6 +91,11 @@ public class VUsuario extends javax.swing.JFrame{
         });
 
         jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("jButton2");
 
@@ -98,44 +107,40 @@ public class VUsuario extends javax.swing.JFrame{
         JPanelAdmin.setLayout(JPanelAdminLayout);
         JPanelAdminLayout.setHorizontalGroup(
             JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JPanelAdminLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelAdminLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JPanelAdminLayout.createSequentialGroup()
-                        .addComponent(comboSeleccionTipoUsuarioDesdeAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 474, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelAdminLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(JPanelAdminLayout.createSequentialGroup()
-                .addGap(153, 153, 153)
-                .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
                 .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanelAdminLayout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(jButton2))
+                        .addContainerGap()
+                        .addComponent(comboSeleccionTipoUsuarioDesdeAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(JPanelAdminLayout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jButton4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(75, 75, 75)
+                        .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(146, 146, 146)
+                        .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         JPanelAdminLayout.setVerticalGroup(
             JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelAdminLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(comboSeleccionTipoUsuarioDesdeAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
+                .addGap(48, 48, 48)
                 .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(36, 36, 36)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(102, 102, 102)
                 .addGroup(JPanelAdminLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                 .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -259,10 +264,6 @@ public class VUsuario extends javax.swing.JFrame{
         jTextField3.setToolTipText("Introduce aquí la fecha a buscar");
         jTextField3.setName("txtFecha"); // NOI18N
 
-        jTextField4.setText("jTextField1");
-
-        jTextField5.setText("jTextField1");
-
         labelNGrupoCliente.setText("Nº de grupo");
 
         labelAulaCliente.setText("Aula");
@@ -270,9 +271,31 @@ public class VUsuario extends javax.swing.JFrame{
         jLabelFecha.setText("Fecha");
         jLabelFecha.setName("jLabelFecha"); // NOI18N
 
-        jLabel2.setText("jLabel2");
+        labelHora.setText("Hora");
 
-        jLabel3.setText("jLabel3");
+        txtNumeroGrupo1.setToolTipText("Hora en la que se llevará a cabo la actividad");
+        txtNumeroGrupo1.setActionCommand("<Not Set>");
+        txtNumeroGrupo1.setName("txtHora"); // NOI18N
+
+        labelProfesor.setText("Profesor");
+        labelProfesor.setName("lblProfesor"); // NOI18N
+
+        txtProfesor.setToolTipText("Profesor que dirige el grupo");
+        txtProfesor.setActionCommand("<Not Set>");
+        txtProfesor.setName("txtProfesor"); // NOI18N
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout JPanelClienteLayout = new javax.swing.GroupLayout(JPanelCliente);
         JPanelCliente.setLayout(JPanelClienteLayout);
@@ -291,16 +314,15 @@ public class VUsuario extends javax.swing.JFrame{
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createSequentialGroup()
-                        .addGap(0, 171, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumeroGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelNGrupoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNumeroGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelNGrupoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelHora, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNumeroGrupo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(JPanelClienteLayout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addComponent(labelAulaCliente)
@@ -309,8 +331,14 @@ public class VUsuario extends javax.swing.JFrame{
                             .addGroup(JPanelClienteLayout.createSequentialGroup()
                                 .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(209, 209, 209))))
+                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(209, 209, 209))
+                    .addGroup(JPanelClienteLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(43, Short.MAX_VALUE))))
         );
         JPanelClienteLayout.setVerticalGroup(
             JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,13 +357,15 @@ public class VUsuario extends javax.swing.JFrame{
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(labelHora)
+                    .addComponent(labelProfesor))
                 .addGap(4, 4, 4)
                 .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 346, Short.MAX_VALUE)
+                    .addComponent(txtNumeroGrupo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -349,6 +379,10 @@ public class VUsuario extends javax.swing.JFrame{
         jTextField3.getAccessibleContext().setAccessibleName("Entrada Fecha a buscar");
         labelAulaCliente.getAccessibleContext().setAccessibleDescription("Etiqueta en la que se lee \"Aula\". Debajo se puede insertar un nombre de aula para realizar una búsqueda");
         jLabelFecha.getAccessibleContext().setAccessibleDescription("Etiqueta en la que pone fecha. Se espera la fecha a buscar debajo");
+        txtNumeroGrupo1.getAccessibleContext().setAccessibleName("HoraGrupoBuscar");
+        txtNumeroGrupo1.getAccessibleContext().setAccessibleDescription("Campo para introducir la hora a buscar");
+        labelProfesor.getAccessibleContext().setAccessibleDescription("");
+        txtProfesor.getAccessibleContext().setAccessibleName("entradaProfesor");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -434,6 +468,10 @@ public class VUsuario extends javax.swing.JFrame{
         salidaEstandarUsuario();
     }//GEN-LAST:event_btnSalir1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
 
 
@@ -452,17 +490,19 @@ public class VUsuario extends javax.swing.JFrame{
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelFecha;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel labelAulaCliente;
+    private javax.swing.JLabel labelHora;
     private javax.swing.JLabel labelNGrupoCliente;
+    private javax.swing.JLabel labelProfesor;
     private javax.swing.JTextField txtNombreAula;
     private javax.swing.JTextField txtNumeroGrupo;
+    private javax.swing.JTextField txtNumeroGrupo1;
+    private javax.swing.JTextField txtProfesor;
     // End of variables declaration//GEN-END:variables
 
     public void actualizarNivelAcceso(TipoUsuario nivelAcceso)

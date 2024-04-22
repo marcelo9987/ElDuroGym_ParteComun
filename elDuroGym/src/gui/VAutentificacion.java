@@ -156,7 +156,7 @@ public class VAutentificacion extends javax.swing.JDialog {
         if ( (tipoLogado = fa.comprobarAutentificacion(txtUsuario.getText(), new String(textoClave.getPassword()))) != TipoUsuario.NO_DEFINIDO )
         {
             fa.setNivelAcceso(tipoLogado);
-            System.out.println("Logando con: "+txtUsuario.getText() + " " + Arrays.toString(textoClave.getPassword()));
+            //System.out.println("Logando con: "+txtUsuario.getText() + " " + Arrays.toString(textoClave.getPassword()));
             fgui.actualizarNivelAccesoMenuPrincipal(fa.getNivelAcceso());
             this.dispose();
         }
