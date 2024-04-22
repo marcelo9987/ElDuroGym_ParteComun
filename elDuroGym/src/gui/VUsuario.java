@@ -6,6 +6,7 @@ package gui;
 
 import aplicacion.TipoUsuario;
 import gui.auxiliares.posicionamientoVentanas;
+import static gui.auxiliares.posicionamientoVentanas.centrarVentana;
 
 import java.awt.*;
 
