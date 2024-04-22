@@ -5,6 +5,7 @@
 package gui;
 
 import aplicacion.TipoUsuario;
+import gui.auxiliares.posicionamientoVentanas;
 
 import java.awt.*;
 
@@ -24,25 +25,10 @@ public class VUsuario extends javax.swing.JFrame{
     public VUsuario(aplicacion.FachadaAplicacion fa) {
         this.fa=fa;
         initComponents();
-        centrarVentana();
-    }
-    
-    private void centrarVentana() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension frameSize = this.getSize();
-        int x = (screenSize.width - frameSize.width) / 2;
-        int y = (screenSize.height - frameSize.height) / 2;
-        this.setLocation(x, y);
+        posicionamientoVentanas.centrarVentana(this);
     }
 
-    // todo: posible refactor?
-    private void centrarVentana(Window ventana) {
-        Dimension tamanhoPantalla = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension tamanhoVentana = ventana.getPreferredSize();
-        int x = (tamanhoPantalla.width - tamanhoVentana.width) / 2;
-        int y = (tamanhoPantalla.height - tamanhoVentana.height) / 2;
-        ventana.setLocation(x, y);
-    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -180,7 +166,7 @@ public class VUsuario extends javax.swing.JFrame{
         JPanelAdmin.getAccessibleContext().setAccessibleName("JPanel administrador");
         JPanelAdmin.getAccessibleContext().setAccessibleDescription("panel que contiene los componentes de las ventanas para administradores");
 
-        centrarVentana(VAdmin);
+        posicionamientoVentanas.centrarVentana(VAdmin);
 
         VProfesor.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         VProfesor.setTitle("Menú Principal");
@@ -249,7 +235,7 @@ public class VUsuario extends javax.swing.JFrame{
         );
 
         VProfesor.getAccessibleContext().setAccessibleParent(this);
-        centrarVentana(VProfesor);
+        posicionamientoVentanas.centrarVentana(VProfesor);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
