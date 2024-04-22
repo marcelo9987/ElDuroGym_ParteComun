@@ -5,6 +5,8 @@
 package baseDatos;
 import aplicacion.*;
 import aplicacion.TipoUsuario;
+import misc.Criptografia;
+
 import java.sql.*;
 /**
  *
@@ -23,6 +25,9 @@ public class DAOUsuarios extends AbstractDAO {
         Connection con;
         PreparedStatement stmUsuario=null;
         ResultSet rsUsuario;
+
+
+        clave = Criptografia.cifrar(clave);
 
         con=this.getConexion();
 
@@ -56,7 +61,13 @@ public class DAOUsuarios extends AbstractDAO {
             TipoUsuario tipoUsuario = rsUsuario.getBoolean("esAdministrador") ? TipoUsuario.Administrador :
                                       rsUsuario.getBoolean("esCliente") ? TipoUsuario.Cliente :
                                       rsUsuario.getBoolean("esProfesor") ? TipoUsuario.Profesor : TipoUsuario.NO_DEFINIDO;
-            System.out.println("QUERY: " + rsUsuario.getString("id_persona") + " " + rsUsuario.getString("contrasenha") + " " + rsUsuario.getString("nombre") + " " + rsUsuario.getString("domicilio") + " " + rsUsuario.getString("correo") + " " + rsUsuario.getString("dni") + " " + rsUsuario.getString("nickname") + " " + tipoUsuario);
+            System.out.println("DEBUG: "+"QUERY: " + rsUsuario.getString("id_persona") + " " + rsUsuario.getString("contrasenha") + " " + rsUsuario.getString("nombre") + " " + rsUsuario.getString("domicilio") + " " + rsUsuario.getString("correo") + " " + rsUsuario.getString("dni") + " " + rsUsuario.getString("nickname") + " " + tipoUsuario);
+
+            if(tipoUsuario == TipoUsuario.NO_DEFINIDO){
+                System.err.println("WARNING! [ desde DAOUsuarios --> validarUsuario ] Tipo de usuario no definido. No se puede crear el usuario.");
+                return null;
+            }
+
             switch(tipoUsuario){
                 case Administrador:
                     resultado = new Administrador(rsUsuario.getString("id_persona"), rsUsuario.getString("contrasenha"),
@@ -73,9 +84,6 @@ public class DAOUsuarios extends AbstractDAO {
                             rsUsuario.getString("nombre"), rsUsuario.getString("domicilio"),
                             rsUsuario.getString("correo"),rsUsuario.getString("dni"), rsUsuario.getString("nickname"));
                     break;
-                default:
-                    System.err.println("WARNING! [ desde DAOUsuarios --> validarUsuario ] Tipo de usuario no definido");
-                    return null;
             }
 //            resultado = new Usuario(rsUsuario.getString("id_persona"), rsUsuario.getString("contrasenha"),
 //                                      rsUsuario.getString("nombre"), rsUsuario.getString("domicilio"),
@@ -117,19 +125,21 @@ public class DAOUsuarios extends AbstractDAO {
                         rsUsuarios.getBoolean("esCliente") ? TipoUsuario.Cliente :
                                 rsUsuarios.getBoolean("esProfesor") ? TipoUsuario.Profesor : TipoUsuario.NO_DEFINIDO;
 
+                String claveDescifrada = Criptografia.descifrar(rsUsuarios.getString("contrasenha"));
+
                 switch(tipoUsuario){
                     case Administrador:
-                        usuarioActual = new Administrador(rsUsuarios.getString("id_persona"), rsUsuarios.getString("contrasenha"),
+                        usuarioActual = new Administrador(rsUsuarios.getString("id_persona"), claveDescifrada,
                                 rsUsuarios.getString("nombre"), rsUsuarios.getString("domicilio"),
                                 rsUsuarios.getString("correo"),rsUsuarios.getString("dni"), rsUsuarios.getString("nickname"));
                         break;
                     case Cliente:
-                        usuarioActual = new aplicacion.Cliente(rsUsuarios.getString("id_persona"), rsUsuarios.getString("contrasenha"),
+                        usuarioActual = new aplicacion.Cliente(rsUsuarios.getString("id_persona"), claveDescifrada,
                                 rsUsuarios.getString("nombre"), rsUsuarios.getString("domicilio"),
                                 rsUsuarios.getString("correo"),rsUsuarios.getString("dni"), rsUsuarios.getString("nickname"));
                         break;
                     case Profesor:
-                        usuarioActual = new Profesor(rsUsuarios.getString("id_persona"), rsUsuarios.getString("contrasenha"),
+                        usuarioActual = new Profesor(rsUsuarios.getString("id_persona"), claveDescifrada,
                                 rsUsuarios.getString("nombre"), rsUsuarios.getString("domicilio"),
                                 rsUsuarios.getString("correo"),rsUsuarios.getString("dni"), rsUsuarios.getString("nickname"));
                         break;
