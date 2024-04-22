@@ -180,8 +180,8 @@ public final class VAutentificacion extends javax.swing.JDialog {
     private void comprobarInicioDeSesion() {
         etiquetaFallo.setVisible(false);
         TipoUsuario tipoLogado;
-        tipoLogado = fa.comprobarAutentificacion(txtUsuario.getText(), new String(textoClave.getPassword()));
-        if(true)
+        if ( (tipoLogado = fa.comprobarAutentificacion(txtUsuario.getText(), new String(textoClave.getPassword()))) != TipoUsuario.NO_DEFINIDO )
+        //if(true)
         {
             fa.setNivelAcceso(tipoLogado);
             System.out.println("Logando con: "+txtUsuario.getText() + " " + Arrays.toString(textoClave.getPassword()));
