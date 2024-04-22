@@ -5,8 +5,8 @@
 package gui;
 
 import aplicacion.TipoUsuario;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+
+import java.awt.*;
 
 import javax.swing.*;
 
@@ -35,6 +35,15 @@ public class VUsuario extends javax.swing.JFrame{
         this.setLocation(x, y);
     }
 
+    // todo: posible refactor?
+    private void centrarVentana(Window ventana) {
+        Dimension tamanhoPantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension tamanhoVentana = ventana.getPreferredSize();
+        int x = (tamanhoPantalla.width - tamanhoVentana.width) / 2;
+        int y = (tamanhoPantalla.height - tamanhoVentana.height) / 2;
+        ventana.setLocation(x, y);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +55,7 @@ public class VUsuario extends javax.swing.JFrame{
 
         VAdmin = new javax.swing.JFrame();
         JPanelAdmin = new javax.swing.JPanel();
-        comboSeleccionTipoUsuarioDesdeAdmin = new javax.swing.JComboBox<>();
+        comboSeleccionTipoUsuarioDesdeAdmin = new javax.swing.JComboBox<String>();
         btnSalir1 = new java.awt.Button();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -54,10 +63,10 @@ public class VUsuario extends javax.swing.JFrame{
         jButton4 = new javax.swing.JButton();
         VProfesor = new javax.swing.JFrame();
         jPanel3 = new javax.swing.JPanel();
-        comboSeleccionTipoUsuarioDesdeProfesor = new javax.swing.JComboBox<>();
+        comboSeleccionTipoUsuarioDesdeProfesor = new javax.swing.JComboBox<String>();
         btnSalir2 = new java.awt.Button();
         JPanelCliente = new javax.swing.JPanel();
-        comboSeleccionTipoUsuarioDesdeUsuario = new javax.swing.JComboBox<>();
+        comboSeleccionTipoUsuarioDesdeUsuario = new javax.swing.JComboBox<String>();
         btnSalir = new java.awt.Button();
         txtNumeroGrupo = new javax.swing.JTextField();
         txtNombreAula = new javax.swing.JTextField();
@@ -76,12 +85,11 @@ public class VUsuario extends javax.swing.JFrame{
         VAdmin.setTitle("Menú Principal");
         VAdmin.setMinimumSize(new java.awt.Dimension(100, 100));
         VAdmin.setName("lienzoPrincipal"); // NOI18N
-        VAdmin.setPreferredSize(new java.awt.Dimension(600, 500));
 
         JPanelAdmin.setBackground(new java.awt.Color(53, 126, 199));
         JPanelAdmin.setPreferredSize(new java.awt.Dimension(600, 500));
 
-        comboSeleccionTipoUsuarioDesdeAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Profesor", "Administrador" }));
+        comboSeleccionTipoUsuarioDesdeAdmin.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Cliente", "Profesor", "Administrador" }));
         comboSeleccionTipoUsuarioDesdeAdmin.setSelectedIndex(2);
         comboSeleccionTipoUsuarioDesdeAdmin.setToolTipText("Selecciona que vista quieres usar");
         comboSeleccionTipoUsuarioDesdeAdmin.setName("comboTipoUsuario"); // NOI18N
@@ -172,6 +180,8 @@ public class VUsuario extends javax.swing.JFrame{
         JPanelAdmin.getAccessibleContext().setAccessibleName("JPanel administrador");
         JPanelAdmin.getAccessibleContext().setAccessibleDescription("panel que contiene los componentes de las ventanas para administradores");
 
+        centrarVentana(VAdmin);
+
         VProfesor.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         VProfesor.setTitle("Menú Principal");
         VProfesor.setMinimumSize(new java.awt.Dimension(100, 100));
@@ -179,8 +189,9 @@ public class VUsuario extends javax.swing.JFrame{
         VProfesor.setPreferredSize(new java.awt.Dimension(600, 500));
 
         jPanel3.setBackground(new java.awt.Color(53, 126, 199));
+        jPanel3.setName(""); // NOI18N
 
-        comboSeleccionTipoUsuarioDesdeProfesor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Profesor", "Administrador" }));
+        comboSeleccionTipoUsuarioDesdeProfesor.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Cliente", "Profesor", "Administrador" }));
         comboSeleccionTipoUsuarioDesdeProfesor.setSelectedIndex(1);
         comboSeleccionTipoUsuarioDesdeProfesor.setToolTipText("Seleccione que vista quiere ver");
         comboSeleccionTipoUsuarioDesdeProfesor.setName("comboTipoUsuario"); // NOI18N
@@ -238,6 +249,7 @@ public class VUsuario extends javax.swing.JFrame{
         );
 
         VProfesor.getAccessibleContext().setAccessibleParent(this);
+        centrarVentana(VProfesor);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
@@ -248,7 +260,7 @@ public class VUsuario extends javax.swing.JFrame{
 
         JPanelCliente.setBackground(new java.awt.Color(53, 126, 199));
 
-        comboSeleccionTipoUsuarioDesdeUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Profesor", "Administrador" }));
+        comboSeleccionTipoUsuarioDesdeUsuario.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Cliente", "Profesor", "Administrador" }));
         comboSeleccionTipoUsuarioDesdeUsuario.setToolTipText("Seleccione que vista desea ver");
         comboSeleccionTipoUsuarioDesdeUsuario.setName("comboTipoUsuario"); // NOI18N
         comboSeleccionTipoUsuarioDesdeUsuario.addActionListener(new java.awt.event.ActionListener() {
