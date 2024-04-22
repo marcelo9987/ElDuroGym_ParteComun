@@ -5,10 +5,12 @@
 package baseDatos;
 
 import aplicacion.FachadaAplicacion;
+import aplicacion.Sesion;
 import aplicacion.Usuario;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -19,6 +21,7 @@ public class FachadaBaseDatos {
     private final FachadaAplicacion fa;
     private java.sql.Connection conexion;
     private DAOUsuarios daoUsuarios;
+    private DAOClientes daoClientes;
     
     public FachadaBaseDatos (FachadaAplicacion fa){
         
@@ -43,7 +46,10 @@ public class FachadaBaseDatos {
                     configuracion.getProperty("puerto")+"/"+
                     configuracion.getProperty("baseDatos"),
                     usuario);
+
         this.daoUsuarios = new DAOUsuarios(conexion,fa);
+
+        this.daoClientes = new DAOClientes(conexion,fa);
 
         } catch (FileNotFoundException f){
             System.out.println(f.getMessage());
@@ -73,5 +79,8 @@ public class FachadaBaseDatos {
         return daoUsuarios.consultarUsuarios(id,nombre);
     }
 
-    
+
+    public List<Sesion> obtenerSesiones(Integer numero, String aula, String fecha, String grupo, String profesor) {
+        return daoUsuarios.obtenerSesiones(numero, aula, fecha, grupo, profesor);
+    }
 }

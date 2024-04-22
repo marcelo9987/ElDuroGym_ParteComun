@@ -24,7 +24,7 @@ public class ModeloTablaSesionesClientes extends AbstractTableModel{
         String nombre="";
 
         switch (col){
-            case 0: nombre= "Profesor"; break;
+            case 0: nombre= "Nombre"; break;
             case 1: nombre= "Aula"; break;
             case 2: nombre="Fecha"; break;
             case 3: nombre="Hora"; break;

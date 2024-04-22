@@ -4,11 +4,12 @@
  */
 package gui;
 
+import aplicacion.Sesion;
 import aplicacion.TipoUsuario;
 import gui.auxiliares.posicionamientoVentanas;
 import static gui.auxiliares.posicionamientoVentanas.centrarVentana;
 
-import java.awt.*;
+import java.util.List;
 
 import javax.swing.*;
 
@@ -68,7 +69,7 @@ public final class VUsuario extends javax.swing.JFrame{
         btnSalir = new java.awt.Button();
         txtNumeroGrupo = new javax.swing.JTextField();
         txtNombreAula = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtFechaSesion = new javax.swing.JTextField();
         labelNGrupoCliente = new javax.swing.JLabel();
         labelAulaCliente = new javax.swing.JLabel();
         jLabelFecha = new javax.swing.JLabel();
@@ -78,6 +79,7 @@ public final class VUsuario extends javax.swing.JFrame{
         txtProfesor = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaSesionesCliente = new javax.swing.JTable();
+        btnBuscarSesiones = new javax.swing.JButton();
 
         VAdmin.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         VAdmin.setTitle("Menú Principal");
@@ -382,8 +384,8 @@ public final class VUsuario extends javax.swing.JFrame{
         txtNombreAula.setToolTipText("Aula en la que se realiza la actividad");
         txtNombreAula.setName("txtAula"); // NOI18N
 
-        jTextField3.setToolTipText("Introduce aquí la fecha a buscar");
-        jTextField3.setName("txtFecha"); // NOI18N
+        txtFechaSesion.setToolTipText("Introduce aquí la fecha a buscar");
+        txtFechaSesion.setName("txtFecha"); // NOI18N
 
         labelNGrupoCliente.setText("Nº de grupo");
 
@@ -405,8 +407,17 @@ public final class VUsuario extends javax.swing.JFrame{
         txtProfesor.setActionCommand("<Not Set>");
         txtProfesor.setName("txtProfesor"); // NOI18N
 
-        tablaSesionesCliente.setModel(new ModeloTablaSesionesClientes());
+        tablaSesionesCliente.setModel(new gui.ModeloTablaSesionesClientes());
         jScrollPane1.setViewportView(tablaSesionesCliente);
+
+        btnBuscarSesiones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.png"))); // NOI18N
+        btnBuscarSesiones.setToolTipText("Busca futuras sesiones");
+        btnBuscarSesiones.setName("btnBuscarSesiones"); // NOI18N
+        btnBuscarSesiones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarSesionesMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout JPanelClienteLayout = new javax.swing.GroupLayout(JPanelCliente);
         JPanelCliente.setLayout(JPanelClienteLayout);
@@ -416,40 +427,44 @@ public final class VUsuario extends javax.swing.JFrame{
                 .addContainerGap()
                 .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanelClienteLayout.createSequentialGroup()
-                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(JPanelClienteLayout.createSequentialGroup()
-                                .addComponent(comboSeleccionTipoUsuarioDesdeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNumeroGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelNGrupoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelHora, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtNumeroGrupo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(JPanelClienteLayout.createSequentialGroup()
-                                .addGap(13, 13, 13)
-                                .addComponent(labelAulaCliente)
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabelFecha))
-                            .addGroup(JPanelClienteLayout.createSequentialGroup()
-                                .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(labelProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(209, 209, 209))
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(JPanelClienteLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(43, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(JPanelClienteLayout.createSequentialGroup()
+                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JPanelClienteLayout.createSequentialGroup()
+                                .addComponent(comboSeleccionTipoUsuarioDesdeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(324, 324, 324))
+                            .addGroup(JPanelClienteLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtNumeroGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(labelNGrupoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(labelHora, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtNumeroGrupo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(JPanelClienteLayout.createSequentialGroup()
+                                        .addGap(13, 13, 13)
+                                        .addComponent(labelAulaCliente)
+                                        .addGap(41, 41, 41)
+                                        .addComponent(jLabelFecha))
+                                    .addComponent(txtProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(JPanelClienteLayout.createSequentialGroup()
+                                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(JPanelClienteLayout.createSequentialGroup()
+                                                .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtFechaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(labelProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(28, 28, 28)
+                                        .addComponent(btnBuscarSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(96, 96, 96))))
         );
         JPanelClienteLayout.setVerticalGroup(
             JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,21 +477,24 @@ public final class VUsuario extends javax.swing.JFrame{
                         .addComponent(labelAulaCliente)
                         .addComponent(jLabelFecha)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNumeroGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(JPanelClienteLayout.createSequentialGroup()
+                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNumeroGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtFechaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelHora)
+                            .addComponent(labelProfesor)))
+                    .addComponent(btnBuscarSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelHora)
-                    .addComponent(labelProfesor))
-                .addGap(4, 4, 4)
                 .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNumeroGrupo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGap(64, 64, 64)
                 .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -487,13 +505,14 @@ public final class VUsuario extends javax.swing.JFrame{
         txtNumeroGrupo.getAccessibleContext().setAccessibleName("CampoBúsquedaGrupo");
         txtNombreAula.getAccessibleContext().setAccessibleName("CampoBúsquedaGrupo");
         txtNombreAula.getAccessibleContext().setAccessibleDescription("Número del grupo a buscar");
-        jTextField3.getAccessibleContext().setAccessibleName("Entrada Fecha a buscar");
+        txtFechaSesion.getAccessibleContext().setAccessibleName("Entrada Fecha a buscar");
         labelAulaCliente.getAccessibleContext().setAccessibleDescription("Etiqueta en la que se lee \"Aula\". Debajo se puede insertar un nombre de aula para realizar una búsqueda");
         jLabelFecha.getAccessibleContext().setAccessibleDescription("Etiqueta en la que pone fecha. Se espera la fecha a buscar debajo");
         txtNumeroGrupo1.getAccessibleContext().setAccessibleName("HoraGrupoBuscar");
         txtNumeroGrupo1.getAccessibleContext().setAccessibleDescription("Campo para introducir la hora a buscar");
         labelProfesor.getAccessibleContext().setAccessibleDescription("");
         txtProfesor.getAccessibleContext().setAccessibleName("entradaProfesor");
+        btnBuscarSesiones.getAccessibleContext().setAccessibleName("Boton buscar sesiones");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -603,6 +622,11 @@ public final class VUsuario extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBorrar1MouseClicked
 
+    private void btnBuscarSesionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarSesionesMouseClicked
+        // TODO add your handling code here:
+        actualizarBusquedaSesiones();
+    }//GEN-LAST:event_btnBuscarSesionesMouseClicked
+
 
 
 
@@ -614,6 +638,7 @@ public final class VUsuario extends javax.swing.JFrame{
     private javax.swing.JLabel btnBorrar;
     private javax.swing.JLabel btnBorrar1;
     private javax.swing.JLabel btnBuscar;
+    private javax.swing.JButton btnBuscarSesiones;
     private java.awt.Button btnSalir;
     private java.awt.Button btnSalir1;
     private java.awt.Button btnSalir2;
@@ -632,7 +657,6 @@ public final class VUsuario extends javax.swing.JFrame{
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel labelAula;
     private javax.swing.JLabel labelAulaCliente;
     private javax.swing.JLabel labelHora;
@@ -641,6 +665,7 @@ public final class VUsuario extends javax.swing.JFrame{
     private javax.swing.JLabel labelProfesor;
     private javax.swing.JTable tablaSesionesCliente;
     private javax.swing.JTable tablaSesionesProfesor;
+    private javax.swing.JTextField txtFechaSesion;
     private javax.swing.JTextField txtNombreAula;
     private javax.swing.JTextField txtNumeroGrupo;
     private javax.swing.JTextField txtNumeroGrupo1;
@@ -673,6 +698,14 @@ public final class VUsuario extends javax.swing.JFrame{
         this.dispose();
         System.out.println("INFO: Saliendo de la aplicación. Nada que reportar.");
         System.exit(0);
+    }
+
+    void actualizarBusquedaSesiones()
+    {
+        Integer numeroGrupo = txtNumeroGrupo.getText().isBlank() ? null : Integer.parseInt(txtNumeroGrupo.getText());
+        List <Sesion> sesiones = fa.obtenerSesiones(numeroGrupo,txtNombreAula.getText(), txtFechaSesion.getText(), txtNumeroGrupo1.getText(), txtProfesor.getText());
+        ModeloTablaSesionesClientes m = (ModeloTablaSesionesClientes) tablaSesionesCliente.getModel();
+        m.setFilas(sesiones);
     }
 
 }

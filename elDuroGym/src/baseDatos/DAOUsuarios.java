@@ -8,6 +8,8 @@ import aplicacion.TipoUsuario;
 import misc.Criptografia;
 
 import java.sql.*;
+import java.util.List;
+
 /**
  *
  * @author basesdatos
@@ -160,7 +162,150 @@ public class DAOUsuarios extends AbstractDAO {
         return resultado;
     }
 
-  
 
-   
+    public List<Sesion> obtenerSesiones(Integer numero, String aula, String fecha, String grupo, String profesor)
+    {
+        Connection con;
+        PreparedStatement stmSesiones = null;
+        ResultSet rsSesiones;
+
+        List <Sesion> resultado = new java.util.ArrayList<>();
+        try {
+            con = this.getConexion();
+
+            boolean yaHeEmpezadoAprocesar = false;
+
+            String consulta = "select " +
+                    "s.id_reserva"+
+                    ", s.fecha_hora_inicio"+
+                    ", s.fecha_hora_fin"+
+                    ", s.descripcion as descripcion_sesion"+
+                    ", s.id_aula"+
+                    ", a.nombre as nombre_aula"+
+                    ", a.aforo as aforo_aula"+
+                    ", s.id_grupo"+
+                    ", g.id_actividad"+
+                    ", ac.nombre as nombre_actividad"+
+                    ", ac.descripcion as descripcion_actividad"+
+                    ", ac.tipo as tipo_actividad "+
+
+                    "from sesion as s " +
+                    "left join aula as a" +
+                    "   on s.id_aula = a.id_aula " +
+                    "left join grupo as g " +
+                    "   on s.id_grupo = g.id_grupo " +
+                    "left join actividad as ac " +
+                    "   on g.id_actividad = ac.id_actividad ";
+
+            consulta += "where ";
+            if (numero!=null) {
+                consulta += "s.id_reserva = ?";
+                yaHeEmpezadoAprocesar = true;
+            }
+            if (!aula.isEmpty()) {
+                if (yaHeEmpezadoAprocesar) {
+                    consulta += "and ";
+                }
+                consulta += "a.nombre like ? ";
+                yaHeEmpezadoAprocesar = true;
+            }
+            if (!fecha.isEmpty()) {
+                if (yaHeEmpezadoAprocesar) {
+                    consulta += "and ";
+                }
+                consulta += "s.fecha_hora_inicio like ? ";
+                yaHeEmpezadoAprocesar = true;
+            }
+            if (!grupo.isEmpty()) {
+                if (yaHeEmpezadoAprocesar) {
+                    consulta += "and ";
+                }
+                consulta += "g.nombre like ? ";
+                yaHeEmpezadoAprocesar = true;
+            }
+
+            if (!profesor.isEmpty()) {
+                if (yaHeEmpezadoAprocesar) {
+                    consulta += "and ";
+                }
+                consulta += "p.nombre like ? ";
+            }
+
+            stmSesiones = con.prepareStatement(consulta);
+
+            int posArgumento = 1;
+            if (numero!=null) {
+                stmSesiones.setInt(1,  numero );
+                posArgumento++;
+            }
+            if (!aula.isEmpty()) {
+                stmSesiones.setString(posArgumento, aula);
+                posArgumento++;
+            }
+            if (!fecha.isEmpty()) {
+                stmSesiones.setString(posArgumento, "%" + fecha + "%");
+                posArgumento++;
+            }
+            if (!grupo.isEmpty()) {
+                stmSesiones.setString(posArgumento, "%" + grupo + "%");
+                posArgumento++;
+            }
+            if (!profesor.isEmpty()) {
+                stmSesiones.setString(posArgumento, "%" + profesor + "%");
+            }
+
+            rsSesiones = stmSesiones.executeQuery();
+
+
+            while (rsSesiones.next())
+            {
+                //Creo el objeto aula que se añadirá a al sesión
+                Aula aulaActual = new Aula(
+                        rsSesiones.getInt("id_aula")
+                        , rsSesiones.getString("nombre_aula")
+                        , rsSesiones.getInt("aforo_aula")
+                );
+
+                // Crear objeto Actividad que añadiré al aún no creado grupo
+                Actividad actividad = new Actividad(
+                        rsSesiones.getInt("id_actividad")
+                        , rsSesiones.getString("nombre_actividad")
+                        , rsSesiones.getString("descripcion_actividad")
+                        , rsSesiones.getString("tipo_actividad")
+                );
+
+                // Crear objeto Grupo y añadirle la actividad
+                Grupo grupoActual = new Grupo(
+                        rsSesiones.getInt("id_grupo")
+                        , actividad
+                );
+
+                //Sesion
+                Sesion sesionActual = new Sesion(
+                        aulaActual
+                        , grupoActual
+                        , rsSesiones.getInt("id_reserva")
+                        , rsSesiones.getTimestamp("fecha_hora_inicio").toLocalDateTime()
+                        , rsSesiones.getTimestamp("fecha_hora_fin").toLocalDateTime()
+                        , rsSesiones.getString("descripcion_sesion")
+                );
+
+
+                resultado.add(sesionActual);
+
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmSesiones.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+
+        return resultado;
+    }
 }

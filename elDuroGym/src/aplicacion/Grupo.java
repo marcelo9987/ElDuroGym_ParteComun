@@ -19,4 +19,6 @@ public class Grupo {
    public Actividad getActividad(){
        return this.id_actividad;
    }
+
+
 }

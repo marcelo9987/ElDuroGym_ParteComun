@@ -6,6 +6,8 @@ package aplicacion;
 
 import controladores.GestionUsuarios;
 
+import java.util.List;
+
 /**
  *
  * @author alumnogreibd
@@ -50,5 +52,10 @@ public class FachadaAplicacion {
     }
     public void setNivelAcceso(TipoUsuario nivelAcceso) {
         this.nivelAcceso = nivelAcceso;
+    }
+
+    public List<Sesion> obtenerSesiones(Integer numero, String aula, String fecha, String grupo, String profesor)
+    {
+        return cu.obtenerSesiones(numero, aula, fecha, grupo, profesor);
     }
 }
