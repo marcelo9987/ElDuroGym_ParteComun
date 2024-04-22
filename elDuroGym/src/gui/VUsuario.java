@@ -25,7 +25,6 @@ public class VUsuario extends javax.swing.JFrame{
         this.fa=fa;
         initComponents();
         centrarVentana();
-        
     }
     
     private void centrarVentana() {
