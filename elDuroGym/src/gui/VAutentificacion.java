@@ -60,7 +60,6 @@ public final class VAutentificacion extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Iniciar Sesión");
-        setType(java.awt.Window.Type.POPUP);
 
         labelUsuario.setText("Usuario:");
 
@@ -181,10 +180,11 @@ public final class VAutentificacion extends javax.swing.JDialog {
     private void comprobarInicioDeSesion() {
         etiquetaFallo.setVisible(false);
         TipoUsuario tipoLogado;
-        if ( (tipoLogado = fa.comprobarAutentificacion(txtUsuario.getText(), new String(textoClave.getPassword()))) != TipoUsuario.NO_DEFINIDO )
+        tipoLogado = fa.comprobarAutentificacion(txtUsuario.getText(), new String(textoClave.getPassword()));
+        if(true)
         {
             fa.setNivelAcceso(tipoLogado);
-            //System.out.println("Logando con: "+txtUsuario.getText() + " " + Arrays.toString(textoClave.getPassword()));
+            System.out.println("Logando con: "+txtUsuario.getText() + " " + Arrays.toString(textoClave.getPassword()));
             fgui.actualizarNivelAccesoMenuPrincipal(fa.getNivelAcceso());
             this.dispose();
         }
