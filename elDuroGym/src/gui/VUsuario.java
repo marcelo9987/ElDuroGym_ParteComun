@@ -41,7 +41,7 @@ public final class VUsuario extends javax.swing.JFrame{
 
         VAdmin = new javax.swing.JFrame();
         JPanelAdmin = new javax.swing.JPanel();
-        comboSeleccionTipoUsuarioDesdeAdmin = new javax.swing.JComboBox<String>();
+        comboSeleccionTipoUsuarioDesdeAdmin = new javax.swing.JComboBox<>();
         btnSalir1 = new java.awt.Button();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -49,10 +49,10 @@ public final class VUsuario extends javax.swing.JFrame{
         jButton4 = new javax.swing.JButton();
         VProfesor = new javax.swing.JFrame();
         jPanel3 = new javax.swing.JPanel();
-        comboSeleccionTipoUsuarioDesdeProfesor = new javax.swing.JComboBox<String>();
+        comboSeleccionTipoUsuarioDesdeProfesor = new javax.swing.JComboBox<>();
         btnSalir2 = new java.awt.Button();
         JPanelCliente = new javax.swing.JPanel();
-        comboSeleccionTipoUsuarioDesdeUsuario = new javax.swing.JComboBox<String>();
+        comboSeleccionTipoUsuarioDesdeUsuario = new javax.swing.JComboBox<>();
         btnSalir = new java.awt.Button();
         txtNumeroGrupo = new javax.swing.JTextField();
         txtNombreAula = new javax.swing.JTextField();
@@ -75,7 +75,7 @@ public final class VUsuario extends javax.swing.JFrame{
         JPanelAdmin.setBackground(new java.awt.Color(53, 126, 199));
         JPanelAdmin.setPreferredSize(new java.awt.Dimension(600, 500));
 
-        comboSeleccionTipoUsuarioDesdeAdmin.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Cliente", "Profesor", "Administrador" }));
+        comboSeleccionTipoUsuarioDesdeAdmin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Profesor", "Administrador" }));
         comboSeleccionTipoUsuarioDesdeAdmin.setSelectedIndex(2);
         comboSeleccionTipoUsuarioDesdeAdmin.setToolTipText("Selecciona que vista quieres usar");
         comboSeleccionTipoUsuarioDesdeAdmin.setName("comboTipoUsuario"); // NOI18N
@@ -166,7 +166,7 @@ public final class VUsuario extends javax.swing.JFrame{
         JPanelAdmin.getAccessibleContext().setAccessibleName("JPanel administrador");
         JPanelAdmin.getAccessibleContext().setAccessibleDescription("panel que contiene los componentes de las ventanas para administradores");
 
-        posicionamientoVentanas.centrarVentana(VAdmin);
+        centrarVentana(VAdmin);
 
         VProfesor.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         VProfesor.setTitle("Menú Principal");
@@ -177,7 +177,7 @@ public final class VUsuario extends javax.swing.JFrame{
         jPanel3.setBackground(new java.awt.Color(53, 126, 199));
         jPanel3.setName(""); // NOI18N
 
-        comboSeleccionTipoUsuarioDesdeProfesor.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Cliente", "Profesor", "Administrador" }));
+        comboSeleccionTipoUsuarioDesdeProfesor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Profesor", "Administrador" }));
         comboSeleccionTipoUsuarioDesdeProfesor.setSelectedIndex(1);
         comboSeleccionTipoUsuarioDesdeProfesor.setToolTipText("Seleccione que vista quiere ver");
         comboSeleccionTipoUsuarioDesdeProfesor.setName("comboTipoUsuario"); // NOI18N
@@ -235,7 +235,7 @@ public final class VUsuario extends javax.swing.JFrame{
         );
 
         VProfesor.getAccessibleContext().setAccessibleParent(this);
-        posicionamientoVentanas.centrarVentana(VProfesor);
+        centrarVentana(VProfesor);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
@@ -246,7 +246,7 @@ public final class VUsuario extends javax.swing.JFrame{
 
         JPanelCliente.setBackground(new java.awt.Color(53, 126, 199));
 
-        comboSeleccionTipoUsuarioDesdeUsuario.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[] { "Cliente", "Profesor", "Administrador" }));
+        comboSeleccionTipoUsuarioDesdeUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Profesor", "Administrador" }));
         comboSeleccionTipoUsuarioDesdeUsuario.setToolTipText("Seleccione que vista desea ver");
         comboSeleccionTipoUsuarioDesdeUsuario.setName("comboTipoUsuario"); // NOI18N
         comboSeleccionTipoUsuarioDesdeUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -293,17 +293,7 @@ public final class VUsuario extends javax.swing.JFrame{
         txtProfesor.setActionCommand("<Not Set>");
         txtProfesor.setName("txtProfesor"); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        jTable1.setModel(new ModeloTablaSesiones());
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout JPanelClienteLayout = new javax.swing.GroupLayout(JPanelCliente);
