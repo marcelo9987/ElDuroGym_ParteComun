@@ -4,6 +4,8 @@
  */
 package gui;
 
+import aplicacion.TipoUsuario;
+
 /**
  *
  * @author alumnogreibd
@@ -22,7 +24,7 @@ public class FachadaGui {
     public void iniciaVista(){
       VAutentificacion va;
     
-      va = new VAutentificacion(vp, true, fa);
+      va = new VAutentificacion(vp, true, fa,this);
       vp.setVisible(true);
       va.setVisible(true);
     }
@@ -33,4 +35,9 @@ public class FachadaGui {
        va = new VAviso(vp, true, txtExcepcion);
        va.setVisible(true);
     }
+
+    public void actualizarNivelAccesoMenuPrincipal(TipoUsuario nivelAcceso){
+        vp.actualizarNivelAcceso(nivelAcceso);
+    }
+
 }

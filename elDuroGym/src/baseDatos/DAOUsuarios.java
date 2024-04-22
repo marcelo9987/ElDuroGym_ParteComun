@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package baseDatos;
-import aplicacion.Usuario;
+import aplicacion.*;
 import aplicacion.TipoUsuario;
+import misc.Criptografia;
+
 import java.sql.*;
 /**
  *
@@ -18,26 +20,74 @@ public class DAOUsuarios extends AbstractDAO {
     }
 
    //Miramos si está en persona
-    public Usuario validarUsuario(String idUsuario, String clave){
+    public Usuario validarUsuario(String nickname, String clave){
         Usuario resultado=null;
         Connection con;
         PreparedStatement stmUsuario=null;
         ResultSet rsUsuario;
 
+
+        clave = Criptografia.cifrar(clave);
+
         con=this.getConexion();
 
         try {
-        stmUsuario=con.prepareStatement("select id_persona, nombre, dni, correo, domicilio, nickname, contrasenha "+
-                                        "from persona "+
-                                        "where id_persona = ? and contrasenha = ?");
-        stmUsuario.setString(1, idUsuario);
+        stmUsuario=con.prepareStatement(
+                "SELECT p.id_persona"+
+                        ", CASE WHEN a.id_administrador IS NOT NULL THEN true ELSE false END AS \"esAdministrador\" " +
+                        ", CASE WHEN c.id_cliente IS NOT NULL THEN true ELSE false END AS \"esCliente\" "+
+                        ", CASE WHEN pr.id_profesor IS NOT NULL THEN true ELSE false END AS \"esProfesor\" "+
+                        ", p.contrasenha "+
+                        ", p.nombre "+
+                        ", p.domicilio "+
+                        ", p.correo "+
+                        " , p.dni "+
+                        ", p.nickname "+
+                " FROM persona as p "+
+                    "left join administrador as a "+
+                            "ON p.id_persona = a.id_administrador "+
+                    "left join cliente as c "+
+                            "ON p.id_persona = c.id_cliente "+
+                    "left join profesor as pr "+
+                            "ON p.id_persona = pr.id_profesor "
+                + "WHERE p.nickname LIKE ? AND p.contrasenha LIKE ?"
+        );
+        stmUsuario.setString(1, nickname);
         stmUsuario.setString(2, clave);
         rsUsuario=stmUsuario.executeQuery();
         if (rsUsuario.next())
         {
-            resultado = new Usuario(rsUsuario.getString("id_persona"), rsUsuario.getString("contrasenha"),
+            //todo: Esto es un code smell como una casa, pero no tengo tiempo para refactorizarlo. Lo suyo sería que saliera de una forma más limpia
+            TipoUsuario tipoUsuario = rsUsuario.getBoolean("esAdministrador") ? TipoUsuario.Administrador :
+                                      rsUsuario.getBoolean("esCliente") ? TipoUsuario.Cliente :
+                                      rsUsuario.getBoolean("esProfesor") ? TipoUsuario.Profesor : TipoUsuario.NO_DEFINIDO;
+            System.out.println("DEBUG: "+"QUERY: " + rsUsuario.getString("id_persona") + " " + rsUsuario.getString("contrasenha") + " " + rsUsuario.getString("nombre") + " " + rsUsuario.getString("domicilio") + " " + rsUsuario.getString("correo") + " " + rsUsuario.getString("dni") + " " + rsUsuario.getString("nickname") + " " + tipoUsuario);
+
+            if(tipoUsuario == TipoUsuario.NO_DEFINIDO){
+                System.err.println("WARNING! [ desde DAOUsuarios --> validarUsuario ] Tipo de usuario no definido. No se puede crear el usuario.");
+                return null;
+            }
+
+            switch(tipoUsuario){
+                case Administrador:
+                    resultado = new Administrador(rsUsuario.getString("id_persona"), rsUsuario.getString("contrasenha"),
                                       rsUsuario.getString("nombre"), rsUsuario.getString("domicilio"),
                                       rsUsuario.getString("correo"),rsUsuario.getString("dni"), rsUsuario.getString("nickname"));
+                    break;
+                case Cliente:
+                    resultado = new aplicacion.Cliente(rsUsuario.getString("id_persona"), rsUsuario.getString("contrasenha"),
+                            rsUsuario.getString("nombre"), rsUsuario.getString("domicilio"),
+                            rsUsuario.getString("correo"),rsUsuario.getString("dni"), rsUsuario.getString("nickname"));
+                    break;
+                case Profesor:
+                    resultado = new Profesor(rsUsuario.getString("id_persona"), rsUsuario.getString("contrasenha"),
+                            rsUsuario.getString("nombre"), rsUsuario.getString("domicilio"),
+                            rsUsuario.getString("correo"),rsUsuario.getString("dni"), rsUsuario.getString("nickname"));
+                    break;
+            }
+//            resultado = new Usuario(rsUsuario.getString("id_persona"), rsUsuario.getString("contrasenha"),
+//                                      rsUsuario.getString("nombre"), rsUsuario.getString("domicilio"),
+//                                      rsUsuario.getString("correo"),rsUsuario.getString("dni"), rsUsuario.getString("nickname"));
 
         }
         } catch (SQLException e){
@@ -51,7 +101,7 @@ public class DAOUsuarios extends AbstractDAO {
     
 
     public java.util.List<Usuario> consultarUsuarios(String id, String nombre){
-        java.util.List<Usuario> resultado = new java.util.ArrayList<Usuario>();
+        java.util.List<Usuario> resultado = new java.util.ArrayList<>();
         Usuario usuarioActual;
         Connection con;
         PreparedStatement stmUsuarios = null;
@@ -71,9 +121,32 @@ public class DAOUsuarios extends AbstractDAO {
             rsUsuarios = stmUsuarios.executeQuery();
             
             while (rsUsuarios.next()){
-                usuarioActual = new Usuario(rsUsuarios.getString("id_persona"), rsUsuarios.getString("contrasenha"),
-                                      rsUsuarios.getString("nombre"), rsUsuarios.getString("domicilio"),
-                                      rsUsuarios.getString("correo"),rsUsuarios.getString("dni"), rsUsuarios.getString("nickname"));
+                TipoUsuario tipoUsuario = rsUsuarios.getBoolean("esAdministrador") ? TipoUsuario.Administrador :
+                        rsUsuarios.getBoolean("esCliente") ? TipoUsuario.Cliente :
+                                rsUsuarios.getBoolean("esProfesor") ? TipoUsuario.Profesor : TipoUsuario.NO_DEFINIDO;
+
+                String claveDescifrada = Criptografia.descifrar(rsUsuarios.getString("contrasenha"));
+
+                switch(tipoUsuario){
+                    case Administrador:
+                        usuarioActual = new Administrador(rsUsuarios.getString("id_persona"), claveDescifrada,
+                                rsUsuarios.getString("nombre"), rsUsuarios.getString("domicilio"),
+                                rsUsuarios.getString("correo"),rsUsuarios.getString("dni"), rsUsuarios.getString("nickname"));
+                        break;
+                    case Cliente:
+                        usuarioActual = new aplicacion.Cliente(rsUsuarios.getString("id_persona"), claveDescifrada,
+                                rsUsuarios.getString("nombre"), rsUsuarios.getString("domicilio"),
+                                rsUsuarios.getString("correo"),rsUsuarios.getString("dni"), rsUsuarios.getString("nickname"));
+                        break;
+                    case Profesor:
+                        usuarioActual = new Profesor(rsUsuarios.getString("id_persona"), claveDescifrada,
+                                rsUsuarios.getString("nombre"), rsUsuarios.getString("domicilio"),
+                                rsUsuarios.getString("correo"),rsUsuarios.getString("dni"), rsUsuarios.getString("nickname"));
+                        break;
+                    default:
+                        System.err.println("WARNING! [ desde DAOUsuarios --> consultarUsuarios ] Tipo de usuario no definido. Sigo iterando.");
+                        continue;
+                }
 
                 resultado.add(usuarioActual);
             }

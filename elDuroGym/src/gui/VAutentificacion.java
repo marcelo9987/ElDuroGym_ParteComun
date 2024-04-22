@@ -4,21 +4,33 @@
  */
 package gui;
 
+import aplicacion.FachadaAplicacion;
+import aplicacion.TipoUsuario;
+
+import gui.FachadaGui;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import java.util.Arrays;
+
+import static gui.auxiliares.posicionamientoVentanas.centrarVentana;
 
 /**
  *
  * @author alumnogreibd
  */
-public class VAutentificacion extends javax.swing.JDialog {
+public final class VAutentificacion extends javax.swing.JDialog {
 
-    aplicacion.FachadaAplicacion fa;
+    FachadaAplicacion fa;
+    FachadaGui fgui;
     
     /** Creates new form VAutentificacion */
-    public VAutentificacion(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa) {
+    public VAutentificacion(java.awt.Frame parent, boolean modal, aplicacion.FachadaAplicacion fa,FachadaGui fgui){
         super(parent, modal);
         this.fa=fa;
+        this.fgui= fgui;
         initComponents();
+        centrarVentana(this);
         etiquetaFallo.setVisible(false);
         this.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
@@ -37,21 +49,40 @@ public class VAutentificacion extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        usuario = new javax.swing.JLabel();
-        clave = new javax.swing.JLabel();
-        textoUsuario = new javax.swing.JTextField();
+        labelUsuario = new javax.swing.JLabel();
+        labelClave = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
         textoClave = new javax.swing.JPasswordField();
         botonAceptar = new javax.swing.JButton();
         botonCancelar = new javax.swing.JButton();
         etiquetaFallo = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Iniciar Sesión");
         setType(java.awt.Window.Type.POPUP);
 
-        usuario.setText("usuario:");
+        labelUsuario.setText("Usuario:");
 
-        clave.setText("clave:");
+        labelClave.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelClave.setText("Clave:");
+
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
+
+        textoClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                textoClaveKeyPressed(evt);
+            }
+        });
 
         botonAceptar.setText("Aceptar");
         botonAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -70,12 +101,25 @@ public class VAutentificacion extends javax.swing.JDialog {
         etiquetaFallo.setForeground(new java.awt.Color(255, 0, 0));
         etiquetaFallo.setText("Credenciales Incorrectas!");
 
+        jToggleButton1.setText("ver");
+        jToggleButton1.setName("verContraseña"); // NOI18N
+        jToggleButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jToggleButton1MouseClicked(evt);
+            }
+        });
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(botonAceptar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(botonCancelar)
@@ -83,33 +127,39 @@ public class VAutentificacion extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(clave)
-                        .addGap(18, 18, 18)
-                        .addComponent(textoClave, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(usuario)
+                        .addComponent(labelUsuario)
                         .addGap(18, 18, 18)
-                        .addComponent(textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(etiquetaFallo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(labelClave)
+                                .addGap(32, 32, 32)
+                                .addComponent(textoClave))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(141, 141, 141)
+                                .addComponent(etiquetaFallo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usuario)
-                    .addComponent(textoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelUsuario)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clave)
-                    .addComponent(textoClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelClave)
+                    .addComponent(textoClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jToggleButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(etiquetaFallo, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                .addComponent(etiquetaFallo, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonAceptar)
@@ -117,37 +167,89 @@ public class VAutentificacion extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jToggleButton1.getAccessibleContext().setAccessibleName("Ver contraseña");
+        jToggleButton1.getAccessibleContext().setAccessibleDescription("Permite ver el campo de la contraseña");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
-        // TODO add your handling code here:
+        comprobarInicioDeSesion();
+
+    }//GEN-LAST:event_botonAceptarActionPerformed
+
+    private void comprobarInicioDeSesion() {
         etiquetaFallo.setVisible(false);
-        if ( fa.comprobarAutentificacion(textoUsuario.getText(), Arrays.toString(textoClave.getPassword())))
+        TipoUsuario tipoLogado;
+        if ( (tipoLogado = fa.comprobarAutentificacion(txtUsuario.getText(), new String(textoClave.getPassword()))) != TipoUsuario.NO_DEFINIDO )
         {
+            fa.setNivelAcceso(tipoLogado);
+            //System.out.println("Logando con: "+txtUsuario.getText() + " " + Arrays.toString(textoClave.getPassword()));
+            fgui.actualizarNivelAccesoMenuPrincipal(fa.getNivelAcceso());
             this.dispose();
         }
         else
         {
-            fa.muestraExcepcion("Credenciales Incorrectas!");
+//            fa.muestraExcepcion("Credenciales Incorrectas!");
             etiquetaFallo.setVisible(true);
         }
-
-    }//GEN-LAST:event_botonAceptarActionPerformed
+    }
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
-        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_botonCancelarActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+        //if(evt.get
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+
+    boolean haSidoPresionadaLaTeclaEnter (char teclaPresionada)
+    {
+        return ('\n' == teclaPresionada) || ('\r' == teclaPresionada);
+    }
+    
+    private void textoClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textoClaveKeyPressed
+        if(haSidoPresionadaLaTeclaEnter(evt.getKeyChar()))
+        {
+            comprobarInicioDeSesion();
+        }
+    }//GEN-LAST:event_textoClaveKeyPressed
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        if(haSidoPresionadaLaTeclaEnter(evt.getKeyChar()))
+        {
+            comprobarInicioDeSesion();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void jToggleButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButton1MouseClicked
+        // muestro la contraseña
+        // En el caso de que el botón esté seleccionado, muestro la contraseña
+        if(jToggleButton1.isSelected())
+        {
+            textoClave.setEchoChar((char)0);
+        }
+        else
+        {
+            textoClave.setEchoChar('*');
+        }
+    }//GEN-LAST:event_jToggleButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAceptar;
     private javax.swing.JButton botonCancelar;
-    private javax.swing.JLabel clave;
     private javax.swing.JLabel etiquetaFallo;
+    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JLabel labelClave;
+    private javax.swing.JLabel labelUsuario;
     private javax.swing.JPasswordField textoClave;
-    private javax.swing.JTextField textoUsuario;
-    private javax.swing.JLabel usuario;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

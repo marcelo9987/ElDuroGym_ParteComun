@@ -18,7 +18,6 @@ public final class Criptografia
     }
 
     public static String cifrar (String texto)
-            throws Exception
     {
 
         byte [] mensajeEntrada =texto.getBytes();
@@ -36,7 +35,6 @@ public final class Criptografia
     }
 
     public static String descifrar (String textoCifrado)
-            throws Exception
     {
         try
         {

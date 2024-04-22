@@ -15,7 +15,7 @@ public class FachadaAplicacion {
     gui.FachadaGui fgui;
     baseDatos.FachadaBaseDatos fbd;
     GestionUsuarios cu;
-
+    TipoUsuario nivelAcceso;
     public FachadaAplicacion() {
         fgui = new gui.FachadaGui(this);
         fbd = new baseDatos.FachadaBaseDatos(this);
@@ -41,8 +41,14 @@ public class FachadaAplicacion {
         fgui.muestraExcepcion(e);
     }
 
-    public Boolean comprobarAutentificacion(String idUsuario, String clave) {
-        return cu.comprobarAutentificacion(idUsuario, clave);
+    public TipoUsuario comprobarAutentificacion(String nickName, String clave) {
+        return cu.comprobarAutentificacion(nickName, clave);
     }
 
+    public TipoUsuario getNivelAcceso() {
+        return nivelAcceso;
+    }
+    public void setNivelAcceso(TipoUsuario nivelAcceso) {
+        this.nivelAcceso = nivelAcceso;
+    }
 }

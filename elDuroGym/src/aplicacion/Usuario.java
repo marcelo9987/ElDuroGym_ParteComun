@@ -5,7 +5,7 @@ package aplicacion;
 /**
  * Clase que representa un usuario del sistema
  */
-public final class Usuario
+public abstract class Usuario
 {
     private final String idUsuario;
     private final String nombre;
@@ -14,7 +14,7 @@ public final class Usuario
     private final String direccion;
     private final String nickname;
     private final String clave;
-    
+
 
 public Usuario(String idUsuario, String clave, String nombre, String direccion, String email, String dni, String nickname){
         this.idUsuario = idUsuario;
@@ -49,8 +49,9 @@ public Usuario(String idUsuario, String clave, String nombre, String direccion, 
     public String dni() {
         return dni;
     }
-    
+
     public String nickname() {
         return nickname;
     }
+
 }

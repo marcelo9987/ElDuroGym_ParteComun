@@ -5,12 +5,12 @@
 package aplicacion;
 
 /**
- *
- * @author alumnogreibd
+ * Enumerado que representa los tipos de usuario que pueden existir en el sistema
+ * @version 2.0
  */
 public enum TipoUsuario {
     Administrador,
     Profesor,
-    Cliente
-
+    Cliente,
+    NO_DEFINIDO
 }

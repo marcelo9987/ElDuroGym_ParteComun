@@ -23,7 +23,11 @@
  */
 package gui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+
+import static gui.auxiliares.posicionamientoVentanas.centrarVentana;
 
 /**
  *
@@ -37,6 +41,7 @@ public final class VAviso extends javax.swing.JDialog {
     public VAviso(java.awt.Frame parent, boolean modal, String txtExcepcion) {
         super(parent, modal);
         initComponents();
+        centrarVentana(this);
         textoExcepcion.setText(txtExcepcion);
         this.addWindowListener(new java.awt.event.WindowAdapter() {
 
@@ -47,6 +52,7 @@ public final class VAviso extends javax.swing.JDialog {
                 });
         this.pack();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

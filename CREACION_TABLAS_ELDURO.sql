@@ -2,13 +2,13 @@
 
 CREATE TABLE Persona
 (
-    id_persona SERIAL PRIMARY KEY NOT NULL,
-    Nombre        VARCHAR(100)       NOT NULL,
-    DNI           VARCHAR(9)         NOT NULL,
-    Correo        VARCHAR(100)       NOT NULL,
-    Domicilio     VARCHAR(200)       NOT NULL,
-    NickName      VARCHAR(100)       NOT NULL,
-    Contrasenha   VARCHAR(150)       NOT NULL
+    id_persona  SERIAL PRIMARY KEY NOT NULL,
+    Nombre      VARCHAR(100)       NOT NULL,
+    DNI         VARCHAR(9) UNIQUE  NOT NULL,
+    Correo      VARCHAR(100)       NOT NULL,
+    Domicilio   VARCHAR(200)       NOT NULL,
+    NickName    VARCHAR(100)       NOT NULL,
+    Contrasenha VARCHAR(150)       NOT NULL
 );
 
 --TABLA DE PROFESOR--
@@ -201,7 +201,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- todo: mejor tener una tabla o que se meta con una insercción manual (preferible).
 --DISPARADOR PARA LA FUNCIONA DE ACTUALIZAR LÑA FECHA DE SALARIO--
 
 CREATE TRIGGER actualizar_fecha_salario_trigger
@@ -254,7 +253,6 @@ CREATE TRIGGER actualizar_total_a_pagar_trigger
     ON Salario
     FOR EACH ROW
 EXECUTE FUNCTION actualizar_total_a_pagar();
- -- todo:!!!!
 
 --TABLA DE ACTIVIDAD--
 
@@ -268,10 +266,11 @@ CREATE TABLE Actividad
 
 --TABLA DE GRUPO--
 
-CREATE TABLE Grupo (
-    Id_grupo SERIAL PRIMARY KEY NOT NULL,
-    Id_actividad INTEGER NOT NULL,
-    FOREIGN KEY (Id_actividad) REFERENCES Actividad(Id_actividad) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE Grupo
+(
+    Id_grupo     SERIAL PRIMARY KEY NOT NULL,
+    Id_actividad INTEGER            NOT NULL,
+    FOREIGN KEY (Id_actividad) REFERENCES Actividad (Id_actividad) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 --TABLA GRUPO TIENE CLIENTE--
@@ -300,19 +299,19 @@ CREATE TABLE Grupo_tiene_Profesor
 
 CREATE TABLE Aula
 (
-    Id_aula     SERIAL PRIMARY KEY  NOT NULL,
-    Nombre      VARCHAR(100) UNIQUE NOT NULL,
-    Aforo       INTEGER
+    Id_aula SERIAL PRIMARY KEY  NOT NULL,
+    Nombre  VARCHAR(100) UNIQUE NOT NULL,
+    Aforo   INTEGER
 );
 
 --TABLA DE EQUIPAMIENTO--
 
 CREATE TABLE Equipamiento
 (
-    Id_equipamiento     SERIAL             NOT NULL,
-    Id_aula             INTEGER            NOT NULL,
-    Nombre              VARCHAR(100)       NOT NULL,
-    Fecha_mantenimiento DATE               NOT NULL,
+    Id_equipamiento     SERIAL       NOT NULL,
+    Id_aula             INTEGER      NOT NULL,
+    Nombre              VARCHAR(100) NOT NULL,
+    Fecha_mantenimiento DATE         NOT NULL,
     Descripcion         VARCHAR(200),
     UNIQUE (Id_aula, id_equipamiento),
     FOREIGN KEY (Id_aula) REFERENCES Aula (Id_aula) ON DELETE CASCADE ON UPDATE CASCADE
@@ -320,16 +319,17 @@ CREATE TABLE Equipamiento
 
 --TABLA DE SESION--
 
-CREATE TABLE Sesion (
-    Id_aula INTEGER NOT NULL,
-    Id_grupo INTEGER NOT NULL,
-    Id_reserva SERIAL UNIQUE PRIMARY KEY NOT NULL,
-    Fecha_hora_inicio TIMESTAMP NOT NULL,
-    Fecha_hora_fin TIMESTAMP NOT NULL,
-    Duracion INTERVAL NOT NULL,
-    Descripcion VARCHAR(200) NOT NULL,
-    FOREIGN KEY (Id_aula) REFERENCES Aula(Id_aula) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    FOREIGN KEY (Id_grupo) REFERENCES Grupo(Id_grupo) ON DELETE NO ACTION ON UPDATE NO ACTION
+CREATE TABLE Sesion
+(
+    Id_aula           INTEGER                   NOT NULL,
+    Id_grupo          INTEGER                   NOT NULL,
+    Id_reserva        SERIAL UNIQUE PRIMARY KEY NOT NULL,
+    Fecha_hora_inicio TIMESTAMP                 NOT NULL,
+    Fecha_hora_fin    TIMESTAMP                 NOT NULL,
+    Duracion          INTERVAL                  NOT NULL,
+    Descripcion       VARCHAR(200)              NOT NULL,
+    FOREIGN KEY (Id_aula) REFERENCES Aula (Id_aula) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    FOREIGN KEY (Id_grupo) REFERENCES Grupo (Id_grupo) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 --CREAMOS UNA FUNCIÓN PARA CALCULAR LA DURACIÓN ENTRE DOS TIMESTAMPS--
