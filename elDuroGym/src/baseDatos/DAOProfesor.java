@@ -69,13 +69,20 @@ public class DAOProfesor extends AbstractDAO {
             // Realizar consulta para obtener las sesiones asociadas a los grupos
             con = this.getConexion();
             for (Integer idGrupo : id_grupos) {
-                stmSesiones = con.prepareStatement("SELECT * FROM sesiones WHERE id_grupo = ?");
+                stmSesiones = con.prepareStatement("SELECT * FROM sesion WHERE id_grupo = ?");
                 stmSesiones.setInt(1, idGrupo);
                 rsSesiones = stmSesiones.executeQuery();
 
                 while (rsSesiones.next()) {
                     // Crear objeto Sesion y añadirlo a la lista resultado
-                    Sesion sesionActual = new Sesion(rsSesiones.getInt("id_aula"), rsSesiones.getInt("id_grupo"), rsSesiones.getInt("id_reserva"), rsSesiones.getTimestamp("fecha_hora_inicio"), rsSesiones.getTimestamp("fecha_hora_fin"), rsSesiones.getString("descripcion"));
+                    Sesion sesionActual = new Sesion(
+                            rsSesiones.getInt("id_aula")
+                            , rsSesiones.getInt("id_grupo")
+                            , rsSesiones.getInt("id_reserva")
+                            , rsSesiones.getTimestamp("fecha_hora_inicio").toLocalDateTime()
+                            , rsSesiones.getTimestamp("fecha_hora_fin").toLocalDateTime()
+                            , rsSesiones.getString("descripcion")
+                    );
                     resultado.add(sesionActual);
                 }
             }

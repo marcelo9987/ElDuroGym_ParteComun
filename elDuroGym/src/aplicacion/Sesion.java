@@ -6,14 +6,16 @@ package aplicacion;
 import java.time.*;
 
 public class Sesion {
-    private Aula id_aula;
-    private Grupo id_grupo;
+//    private Aula id_aula;
+//    private Grupo id_grupo;
+    private int id_aula;
+    private int id_grupo;
     private int  id_reserva;
     LocalDateTime fecha_hora_inicio;
     LocalDateTime fecha_hora_fin;
     String descripcion;
     
-    public Sesion(Aula id_aula, Grupo id_grupo, int id_reserva, LocalDateTime fecha_hora_inicio, LocalDateTime fecha_hora_fin, String descripcion){
+    public Sesion(int id_aula, int id_grupo, int id_reserva, LocalDateTime fecha_hora_inicio, LocalDateTime fecha_hora_fin, String descripcion){
         this.id_aula = id_aula;
         this.id_grupo = id_grupo;
         this.id_reserva = id_reserva;
@@ -22,19 +24,19 @@ public class Sesion {
         this.descripcion = descripcion;
         
     }
-    public Aula getId_Aula(){
+    public int getIdAula(){
         return this.id_aula;
     }
-    public Grupo getId_Grupo(){
+    public int getIdGrupo(){
         return this.id_grupo;
     }
-    public int getId_reserva(){
+    public int getIdReserva(){
         return this.id_reserva;
     }
-    public LocalDateTime getFecha_hora_inicio(){
+    public LocalDateTime getFechaHoraInicio(){
         return this.fecha_hora_inicio;
     }
-    public LocalDateTime getFecha_hora_fin(){
+    public LocalDateTime getFechaHoraFin(){
         return this.fecha_hora_fin;
     }
     public String getDescripcion(){
