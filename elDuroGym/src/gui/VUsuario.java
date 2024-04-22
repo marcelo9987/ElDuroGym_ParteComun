@@ -15,7 +15,7 @@ import javax.swing.*;
  *
  * @author alumnogreibd
  */
-public class VUsuario extends javax.swing.JFrame{
+public final class VUsuario extends javax.swing.JFrame{
 
     /**
      * Creates new form VProfesor

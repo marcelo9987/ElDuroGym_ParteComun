@@ -19,7 +19,7 @@ import static gui.auxiliares.posicionamientoVentanas.centrarVentana;
  *
  * @author alumnogreibd
  */
-public class VAutentificacion extends javax.swing.JDialog {
+public final class VAutentificacion extends javax.swing.JDialog {
 
     FachadaAplicacion fa;
     FachadaGui fgui;
