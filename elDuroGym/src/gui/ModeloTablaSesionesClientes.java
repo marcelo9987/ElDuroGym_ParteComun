@@ -2,10 +2,10 @@ package gui;
 import aplicacion.Sesion;
 import javax.swing.table.*;
 
-public class ModeloTablaSesiones extends AbstractTableModel{
+public class ModeloTablaSesionesClientes extends AbstractTableModel{
     private java.util.List<Sesion> sesiones;
 
-    public ModeloTablaSesiones(){
+    public ModeloTablaSesionesClientes(){
         this.sesiones=new java.util.ArrayList<>();
     }
 
