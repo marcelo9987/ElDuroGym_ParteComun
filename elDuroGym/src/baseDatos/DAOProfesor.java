@@ -69,15 +69,61 @@ public class DAOProfesor extends AbstractDAO {
             // Realizar consulta para obtener las sesiones asociadas a los grupos
             con = this.getConexion();
             for (Integer idGrupo : id_grupos) {
-                stmSesiones = con.prepareStatement("SELECT * FROM sesion WHERE id_grupo = ?");
+                stmSesiones = con.prepareStatement("SELECT s.id_reserva\n" +
+                        "     , s.fecha_hora_inicio\n" +
+                        "     , s.fecha_hora_fin\n" +
+                        "     , s.descripcion as descripcion_sesion\n" +
+                        "     , s.id_aula\n" +
+                        "     , a.nombre as nombre_aula\n" +
+                        "     , a.aforo as aforo_aula\n" +
+                        "     , s.id_grupo\n" +
+                        "     , g.id_actividad\n" +
+                        "     , ac.nombre as nombre_actividad\n" +
+                        "     , ac.descripcion as descripcion_actividad\n" +
+                        "     , ac.tipo as tipo_actividad\n" +
+                        "\n" +
+                        "FROM sesion as s\n" +
+                        "         left join aula a\n" +
+                        "                   ON s.id_aula = a.id_aula\n" +
+                        "         left join grupo g\n" +
+                        "                   ON s.id_grupo = g.id_grupo\n" +
+                        "         left join actividad ac\n" +
+                        "                   on g.id_actividad = ac.id_actividad\n" +
+                        "\n" +
+                        "WHERE s.id_grupo = ?");
                 stmSesiones.setInt(1, idGrupo);
                 rsSesiones = stmSesiones.executeQuery();
 
                 while (rsSesiones.next()) {
+                    //Creo el objeto aula que se añadirá a al sesión
+                    Aula aula = new Aula(
+                            rsSesiones.getInt("id_aula")
+                            , rsSesiones.getString("nombre_aula")
+                            , rsSesiones.getInt("aforo_aula")
+                    );
+
+                    // Crear objeto Actividad que añadiré al aún no creado grupo
+                    Actividad actividad = new Actividad(
+                            rsSesiones.getInt("id_actividad")
+                            , rsSesiones.getString("nombre_actividad")
+                            , rsSesiones.getString("descripcion_actividad")
+                            , rsSesiones.getString("tipo_actividad")
+                    );
+
+                    // Crear objeto Grupo y añadirle la actividad
+                    Grupo grupo = new Grupo(
+                            rsSesiones.getInt("id_grupo")
+                            , actividad
+                    );
+
+
                     // Crear objeto Sesion y añadirlo a la lista resultado
                     Sesion sesionActual = new Sesion(
-                            rsSesiones.getInt("id_aula")
-                            , rsSesiones.getInt("id_grupo")
+//                            rsSesiones.getInt("id_aula")
+//                            , rsSesiones.getInt("id_grupo")
+//                            , rsSesiones.getInt("id_reserva")
+                            aula
+                            ,grupo
                             , rsSesiones.getInt("id_reserva")
                             , rsSesiones.getTimestamp("fecha_hora_inicio").toLocalDateTime()
                             , rsSesiones.getTimestamp("fecha_hora_fin").toLocalDateTime()

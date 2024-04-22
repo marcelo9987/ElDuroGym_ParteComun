@@ -8,27 +8,29 @@ import java.time.*;
 public class Sesion {
 //    private Aula id_aula;
 //    private Grupo id_grupo;
-    private int id_aula;
-    private int id_grupo;
+//    private int id_aula;
+    private Aula aula;
+//    private int id_grupo;
+    private Grupo grupo;
     private int  id_reserva;
     LocalDateTime fecha_hora_inicio;
     LocalDateTime fecha_hora_fin;
     String descripcion;
     
-    public Sesion(int id_aula, int id_grupo, int id_reserva, LocalDateTime fecha_hora_inicio, LocalDateTime fecha_hora_fin, String descripcion){
-        this.id_aula = id_aula;
-        this.id_grupo = id_grupo;
+    public Sesion(Aula aula, Grupo grupo, int id_reserva, LocalDateTime fecha_hora_inicio, LocalDateTime fecha_hora_fin, String descripcion){
+        this.aula = aula;
+        this.grupo = grupo;
         this.id_reserva = id_reserva;
         this.fecha_hora_inicio = fecha_hora_inicio;
         this.fecha_hora_fin = fecha_hora_fin;
         this.descripcion = descripcion;
         
     }
-    public int getIdAula(){
-        return this.id_aula;
+    public Aula getAula(){
+        return this.aula;
     }
-    public int getIdGrupo(){
-        return this.id_grupo;
+    public Grupo geGrupo(){
+        return this.grupo;
     }
     public int getIdReserva(){
         return this.id_reserva;

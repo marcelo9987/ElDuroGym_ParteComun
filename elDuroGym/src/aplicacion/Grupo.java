@@ -16,7 +16,7 @@ public class Grupo {
    public int getId_Grupo(){
        return this.id_grupo;
    }
-   public Actividad getId_Actividad(){
+   public Actividad getActividad(){
        return this.id_actividad;
    }
 }

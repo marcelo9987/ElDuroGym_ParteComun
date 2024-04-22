@@ -56,9 +56,9 @@ public class ModeloTablaSesionesClientes extends AbstractTableModel{
 
         switch (col){
 //            case 0: resultado= sesiones.get(row).getIdGrupo().getIdActividad().getNombre(); break;
-            case 0: resultado= sesiones.get(row).getIdGrupo(); break;
+            case 0: resultado= sesiones.get(row).geGrupo().getActividad().getNombre(); break;
 //            case 1: resultado= sesiones.get(row).getIdAula().getNombre(); break;
-            case 1: resultado= sesiones.get(row).getIdAula(); break;
+            case 1: resultado= sesiones.get(row).getAula().getNombre(); break;
             case 2: resultado=sesiones.get(row).getFechaHoraInicio().toLocalDate();break;
             case 3: resultado=sesiones.get(row).getFechaHoraInicio().toLocalTime(); break;
         }

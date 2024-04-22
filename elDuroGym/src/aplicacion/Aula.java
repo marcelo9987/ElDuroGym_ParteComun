@@ -7,13 +7,14 @@ package aplicacion;
 public class Aula {
     private int id_aula;
     private String nombre;
-    private int aforo;
+    private Integer aforo;
     
     public Aula(int id_aula,String nombre,int aforo ){
         this.id_aula = id_aula;
         this.nombre = nombre;
         this.aforo = aforo;
     }
+
     public int getId_Aula(){
         return this.id_aula;
     }
