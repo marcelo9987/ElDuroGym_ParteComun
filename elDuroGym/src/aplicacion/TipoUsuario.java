@@ -13,5 +13,4 @@ public enum TipoUsuario {
     Profesor,
     Cliente,
     NO_DEFINIDO
-
 }

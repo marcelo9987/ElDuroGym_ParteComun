@@ -8,6 +8,8 @@ import aplicacion.FachadaAplicacion;
 import aplicacion.TipoUsuario;
 
 import gui.FachadaGui;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import java.util.Arrays;
 
@@ -26,6 +28,7 @@ public class VAutentificacion extends javax.swing.JDialog {
         this.fa=fa;
         this.fgui= fgui;
         initComponents();
+        centrarVentana();
         etiquetaFallo.setVisible(false);
         this.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
@@ -33,6 +36,14 @@ public class VAutentificacion extends javax.swing.JDialog {
                         System.exit(0);
                     }
                 });
+    }
+    
+    private void centrarVentana() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = this.getSize();
+        int x = (screenSize.width - frameSize.width) / 2;
+        int y = (screenSize.height - frameSize.height) / 2;
+        this.setLocation(x, y);
     }
 
     /**

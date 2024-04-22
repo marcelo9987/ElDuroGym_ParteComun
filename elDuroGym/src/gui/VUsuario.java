@@ -5,6 +5,8 @@
 package gui;
 
 import aplicacion.TipoUsuario;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.*;
 
@@ -22,6 +24,15 @@ public class VUsuario extends javax.swing.JFrame{
     public VUsuario(aplicacion.FachadaAplicacion fa) {
         this.fa=fa;
         initComponents();
+        centrarVentana();
+    }
+    
+    private void centrarVentana() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = this.getSize();
+        int x = (screenSize.width - frameSize.width) / 2;
+        int y = (screenSize.height - frameSize.height) / 2;
+        this.setLocation(x, y);
     }
 
     /**

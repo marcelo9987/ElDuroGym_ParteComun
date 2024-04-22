@@ -23,6 +23,8 @@
  */
 package gui;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 
 /**
@@ -37,6 +39,7 @@ public final class VAviso extends javax.swing.JDialog {
     public VAviso(java.awt.Frame parent, boolean modal, String txtExcepcion) {
         super(parent, modal);
         initComponents();
+        centrarVentana();
         textoExcepcion.setText(txtExcepcion);
         this.addWindowListener(new java.awt.event.WindowAdapter() {
 
@@ -46,6 +49,13 @@ public final class VAviso extends javax.swing.JDialog {
                     }
                 });
         this.pack();
+    }
+    private void centrarVentana() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension frameSize = this.getSize();
+        int x = (screenSize.width - frameSize.width) / 2;
+        int y = (screenSize.height - frameSize.height) / 2;
+        this.setLocation(x, y);
     }
 
     /**
