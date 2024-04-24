@@ -5,6 +5,8 @@
 package aplicacion;
 
 import controladores.GestionUsuarios;
+import java.time.LocalTime;
+import java.util.Date;
 
 import java.util.List;
 
@@ -57,5 +59,9 @@ public class FachadaAplicacion {
     public List<Sesion> obtenerSesiones(Integer numero, String aula, String fecha, String grupo, String profesor)
     {
         return cu.obtenerSesiones(numero, aula, fecha, grupo, profesor);
+    }
+    
+    public List<SesionCliente> obtenerSesionesCliente (String nickname, String nombreActividad, String nombreAula, String fecha, String hora){
+        return cu.obtenerSesionesCliente(nickname, nombreActividad, nombreAula, fecha, hora);
     }
 }

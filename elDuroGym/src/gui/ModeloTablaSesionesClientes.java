@@ -1,9 +1,10 @@
 package gui;
 import aplicacion.Sesion;
+import aplicacion.SesionCliente;
 import javax.swing.table.*;
 
 public class ModeloTablaSesionesClientes extends AbstractTableModel{
-    private java.util.List<Sesion> sesiones;
+    private java.util.List<SesionCliente> sesiones;
 
     public ModeloTablaSesionesClientes(){
         this.sesiones=new java.util.ArrayList<>();
@@ -55,22 +56,21 @@ public class ModeloTablaSesionesClientes extends AbstractTableModel{
         Object resultado=null;
 
         switch (col){
-//            case 0: resultado= sesiones.get(row).getIdGrupo().getIdActividad().getNombre(); break;
-            case 0: resultado= sesiones.get(row).geGrupo().getActividad().getNombre(); break;
-//            case 1: resultado= sesiones.get(row).getIdAula().getNombre(); break;
-            case 1: resultado= sesiones.get(row).getAula().getNombre(); break;
-            case 2: resultado=sesiones.get(row).getFechaHoraInicio().toLocalDate();break;
-            case 3: resultado=sesiones.get(row).getFechaHoraInicio().toLocalTime(); break;
+            case 0: resultado= sesiones.get(row).getNombreActividad(); break;
+
+            case 1: resultado= sesiones.get(row).getNombreAula(); break;
+            case 2: resultado=sesiones.get(row).getFecha();break;
+            case 3: resultado=sesiones.get(row).getHora(); break;
         }
         return resultado;
     }
 
-    public void setFilas(java.util.List<Sesion> sesiones){
+    public void setFilas(java.util.List<SesionCliente> sesiones){
         this.sesiones=sesiones;
         fireTableDataChanged();
     }
 
-    public Sesion obtenerSesion(int i){
+    public SesionCliente obtenerSesion(int i){
         return this.sesiones.get(i);
     }
 

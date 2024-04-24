@@ -480,56 +480,51 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="btnSalir" min="-2" pref="96" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="526" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="comboSeleccionTipoUsuarioDesdeUsuario" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="324" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  <Component id="jScrollPane1" min="-2" pref="526" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                          <Component id="txtNumeroGrupo" min="-2" pref="76" max="-2" attributes="0"/>
-                                          <Component id="labelNGrupoCliente" min="-2" pref="65" max="-2" attributes="0"/>
+                              <Component id="comboSeleccionTipoUsuarioDesdeUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="43" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="btnSalir" min="-2" pref="96" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="labelHora" min="-2" pref="65" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtHora" min="-2" pref="76" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="txtNumeroGrupo1" alignment="1" min="-2" pref="76" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="labelActividad" min="-2" pref="65" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtActividad" min="-2" pref="76" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabelFecha" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelAulaCliente" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                          <Component id="labelAulaCliente" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                          <Component id="jLabelFecha" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="txtProfesor" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="txtNombreAula" min="-2" pref="50" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="txtFechaSesion" min="-2" pref="52" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="labelProfesor" alignment="0" min="-2" pref="65" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                          <Component id="btnBuscarSesiones" min="-2" pref="85" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="txtNombreAula" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="txtFechaSesion" min="-2" pref="52" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="btnBuscarSesiones" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -539,40 +534,42 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="comboSeleccionTipoUsuarioDesdeUsuario" max="-2" attributes="0"/>
-                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="labelNGrupoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelAulaCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="comboSeleccionTipoUsuarioDesdeUsuario" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtNumeroGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtNombreAula" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtFechaSesion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="labelActividad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtActividad" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtNombreAula" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelAulaCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                  <Component id="labelHora" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="txtHora" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtFechaSesion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
+                          <EmptySpace pref="11" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="263" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                          <Component id="btnSalir" min="-2" pref="40" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelHora" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelProfesor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
-                      <Component id="btnBuscarSesiones" min="-2" pref="44" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="btnBuscarSesiones" min="-2" pref="44" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtNumeroGrupo1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtProfesor" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="17" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="263" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                  <Component id="btnSalir" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -616,7 +613,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNumeroGrupo">
+        <Component class="javax.swing.JTextField" name="txtActividad">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="N&#xfa;mero del grupo a buscar"/>
             <Property name="actionCommand" type="java.lang.String" value="&lt;Not Set&gt;"/>
@@ -634,6 +631,9 @@
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="CampoB&#xfa;squedaGrupo"/>
             <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="N&#xfa;mero del grupo a buscar"/>
           </AccessibilityProperties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNombreAulaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtFechaSesion">
           <Properties>
@@ -644,9 +644,9 @@
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Entrada Fecha a buscar"/>
           </AccessibilityProperties>
         </Component>
-        <Component class="javax.swing.JLabel" name="labelNGrupoCliente">
+        <Component class="javax.swing.JLabel" name="labelActividad">
           <Properties>
-            <Property name="text" type="java.lang.String" value="N&#xba; de grupo"/>
+            <Property name="text" type="java.lang.String" value="Actividad"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="labelAulaCliente">
@@ -671,7 +671,7 @@
             <Property name="text" type="java.lang.String" value="Hora"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNumeroGrupo1">
+        <Component class="javax.swing.JTextField" name="txtHora">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Hora en la que se llevar&#xe1; a cabo la actividad"/>
             <Property name="actionCommand" type="java.lang.String" value="&lt;Not Set&gt;"/>
@@ -681,25 +681,9 @@
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="HoraGrupoBuscar"/>
             <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value="Campo para introducir la hora a buscar"/>
           </AccessibilityProperties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="labelProfesor">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Profesor"/>
-            <Property name="name" type="java.lang.String" value="lblProfesor" noResource="true"/>
-          </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
-          </AccessibilityProperties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtProfesor">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Profesor que dirige el grupo"/>
-            <Property name="actionCommand" type="java.lang.String" value="&lt;Not Set&gt;"/>
-            <Property name="name" type="java.lang.String" value="txtProfesor" noResource="true"/>
-          </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="entradaProfesor"/>
-          </AccessibilityProperties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHoraActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -724,12 +708,14 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Busca futuras sesiones"/>
             <Property name="name" type="java.lang.String" value="btnBuscarSesiones" noResource="true"/>
+            <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <AccessibilityProperties>
             <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Boton buscar sesiones"/>
           </AccessibilityProperties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnBuscarSesionesMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarSesionesActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -29,7 +29,7 @@ public class Sesion {
     public Aula getAula(){
         return this.aula;
     }
-    public Grupo geGrupo(){
+    public Grupo getGrupo(){
         return this.grupo;
     }
     public int getIdReserva(){

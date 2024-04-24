@@ -4,6 +4,7 @@
  */
 package gui;
 
+import aplicacion.AutenticacionSingleton;
 import aplicacion.FachadaAplicacion;
 import aplicacion.TipoUsuario;
 
@@ -184,6 +185,8 @@ public final class VAutentificacion extends javax.swing.JDialog {
             fa.setNivelAcceso(tipoLogado);
             System.out.println("Logando con: "+txtUsuario.getText() + " " + Arrays.toString(textoClave.getPassword()));
             fgui.actualizarNivelAccesoMenuPrincipal(fa.getNivelAcceso());
+            AutenticacionSingleton.getInstance().setNickname(txtUsuario.getText());
+            AutenticacionSingleton.getInstance().setClave(textoClave.getText());
             this.dispose();
         }
         else
@@ -191,6 +194,7 @@ public final class VAutentificacion extends javax.swing.JDialog {
 //            fa.muestraExcepcion("Credenciales Incorrectas!");
             etiquetaFallo.setVisible(true);
         }
+        
     }
 
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
@@ -250,4 +254,5 @@ public final class VAutentificacion extends javax.swing.JDialog {
     private javax.swing.JPasswordField textoClave;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
 }

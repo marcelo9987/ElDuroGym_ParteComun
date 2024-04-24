@@ -6,10 +6,14 @@ package baseDatos;
 
 import aplicacion.FachadaAplicacion;
 import aplicacion.Sesion;
+import aplicacion.SesionCliente;
 import aplicacion.Usuario;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Properties;
 
@@ -82,5 +86,9 @@ public class FachadaBaseDatos {
 
     public List<Sesion> obtenerSesiones(Integer numero, String aula, String fecha, String grupo, String profesor) {
         return daoUsuarios.obtenerSesiones(numero, aula, fecha, grupo, profesor);
+    }
+    
+    public List<SesionCliente> obtenerSesionesCliente (String nickname, String nombreActividad, String nombreAula, String fecha, String hora){
+        return daoUsuarios.obtenerSesionesCliente(nickname, nombreActividad, nombreAula, fecha, hora);
     }
 }

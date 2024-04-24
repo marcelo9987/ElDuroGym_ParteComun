@@ -5,11 +5,14 @@
 package controladores;
 
 import aplicacion.Sesion;
+import aplicacion.SesionCliente;
 import aplicacion.TipoUsuario;
 import aplicacion.Usuario;
 import baseDatos.DAOUsuarios;
 import baseDatos.FachadaBaseDatos;
 import gui.FachadaGui;
+import java.time.LocalTime;
+import java.util.Date;
 
 import java.util.List;
 
@@ -32,7 +35,9 @@ public class GestionUsuarios {
       Usuario u;
 
       u=fbd.validarUsuario(nickname, clave);
-      if(u==null) return TipoUsuario.NO_DEFINIDO;
+      if(u==null) {
+          return TipoUsuario.NO_DEFINIDO;
+      }
       return switch (u.getClass().getSimpleName()) {
           case "Administrador" -> TipoUsuario.Administrador;
           case "Cliente" -> TipoUsuario.Cliente;
@@ -56,5 +61,9 @@ public class GestionUsuarios {
 
     public List<Sesion> obtenerSesiones(Integer numero, String aula, String fecha, String grupo, String profesor) {
         return fbd.obtenerSesiones(numero, aula, fecha, grupo, profesor);
+    }
+    
+    public List<SesionCliente> obtenerSesionesCliente (String nickname, String nombreActividad, String nombreAula, String fecha, String hora){
+        return fbd.obtenerSesionesCliente(nickname, nombreActividad, nombreAula, fecha, hora);
     }
 }

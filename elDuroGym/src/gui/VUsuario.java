@@ -4,7 +4,9 @@
  */
 package gui;
 
+import aplicacion.AutenticacionSingleton;
 import aplicacion.Sesion;
+import aplicacion.SesionCliente;
 import aplicacion.TipoUsuario;
 import gui.auxiliares.posicionamientoVentanas;
 import static gui.auxiliares.posicionamientoVentanas.centrarVentana;
@@ -67,16 +69,14 @@ public final class VUsuario extends javax.swing.JFrame{
         JPanelCliente = new javax.swing.JPanel();
         comboSeleccionTipoUsuarioDesdeUsuario = new javax.swing.JComboBox<>();
         btnSalir = new java.awt.Button();
-        txtNumeroGrupo = new javax.swing.JTextField();
+        txtActividad = new javax.swing.JTextField();
         txtNombreAula = new javax.swing.JTextField();
         txtFechaSesion = new javax.swing.JTextField();
-        labelNGrupoCliente = new javax.swing.JLabel();
+        labelActividad = new javax.swing.JLabel();
         labelAulaCliente = new javax.swing.JLabel();
         jLabelFecha = new javax.swing.JLabel();
         labelHora = new javax.swing.JLabel();
-        txtNumeroGrupo1 = new javax.swing.JTextField();
-        labelProfesor = new javax.swing.JLabel();
-        txtProfesor = new javax.swing.JTextField();
+        txtHora = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaSesionesCliente = new javax.swing.JTable();
         btnBuscarSesiones = new javax.swing.JButton();
@@ -378,16 +378,21 @@ public final class VUsuario extends javax.swing.JFrame{
             }
         });
 
-        txtNumeroGrupo.setToolTipText("Número del grupo a buscar");
-        txtNumeroGrupo.setActionCommand("<Not Set>");
+        txtActividad.setToolTipText("Número del grupo a buscar");
+        txtActividad.setActionCommand("<Not Set>");
 
         txtNombreAula.setToolTipText("Aula en la que se realiza la actividad");
         txtNombreAula.setName("txtAula"); // NOI18N
+        txtNombreAula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreAulaActionPerformed(evt);
+            }
+        });
 
         txtFechaSesion.setToolTipText("Introduce aquí la fecha a buscar");
         txtFechaSesion.setName("txtFecha"); // NOI18N
 
-        labelNGrupoCliente.setText("Nº de grupo");
+        labelActividad.setText("Actividad");
 
         labelAulaCliente.setText("Aula");
 
@@ -396,16 +401,14 @@ public final class VUsuario extends javax.swing.JFrame{
 
         labelHora.setText("Hora");
 
-        txtNumeroGrupo1.setToolTipText("Hora en la que se llevará a cabo la actividad");
-        txtNumeroGrupo1.setActionCommand("<Not Set>");
-        txtNumeroGrupo1.setName("txtHora"); // NOI18N
-
-        labelProfesor.setText("Profesor");
-        labelProfesor.setName("lblProfesor"); // NOI18N
-
-        txtProfesor.setToolTipText("Profesor que dirige el grupo");
-        txtProfesor.setActionCommand("<Not Set>");
-        txtProfesor.setName("txtProfesor"); // NOI18N
+        txtHora.setToolTipText("Hora en la que se llevará a cabo la actividad");
+        txtHora.setActionCommand("<Not Set>");
+        txtHora.setName("txtHora"); // NOI18N
+        txtHora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHoraActionPerformed(evt);
+            }
+        });
 
         tablaSesionesCliente.setModel(new gui.ModeloTablaSesionesClientes());
         jScrollPane1.setViewportView(tablaSesionesCliente);
@@ -413,9 +416,15 @@ public final class VUsuario extends javax.swing.JFrame{
         btnBuscarSesiones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lupa.png"))); // NOI18N
         btnBuscarSesiones.setToolTipText("Busca futuras sesiones");
         btnBuscarSesiones.setName("btnBuscarSesiones"); // NOI18N
+        btnBuscarSesiones.setOpaque(true);
         btnBuscarSesiones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarSesionesMouseClicked(evt);
+            }
+        });
+        btnBuscarSesiones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarSesionesActionPerformed(evt);
             }
         });
 
@@ -427,91 +436,86 @@ public final class VUsuario extends javax.swing.JFrame{
                 .addContainerGap()
                 .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanelClienteLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(JPanelClienteLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(JPanelClienteLayout.createSequentialGroup()
                         .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(JPanelClienteLayout.createSequentialGroup()
-                                .addComponent(comboSeleccionTipoUsuarioDesdeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(324, 324, 324))
-                            .addGroup(JPanelClienteLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(25, 25, 25)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboSeleccionTipoUsuarioDesdeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(43, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createSequentialGroup()
+                                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createSequentialGroup()
+                                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPanelClienteLayout.createSequentialGroup()
+                                        .addComponent(labelHora, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(JPanelClienteLayout.createSequentialGroup()
+                                        .addComponent(labelActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)))
+                                .addGap(3, 3, 3)
                                 .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtNumeroGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(labelNGrupoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(labelHora, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtNumeroGrupo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabelFecha)
+                                    .addComponent(labelAulaCliente))
                                 .addGap(18, 18, 18)
-                                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(JPanelClienteLayout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addComponent(labelAulaCliente)
-                                        .addGap(41, 41, 41)
-                                        .addComponent(jLabelFecha))
-                                    .addComponent(txtProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(JPanelClienteLayout.createSequentialGroup()
-                                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(JPanelClienteLayout.createSequentialGroup()
-                                                .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(txtFechaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(labelProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(28, 28, 28)
-                                        .addComponent(btnBuscarSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(96, 96, 96))))
+                                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFechaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 43, 43)
+                                .addComponent(btnBuscarSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(139, 139, 139))))))
         );
         JPanelClienteLayout.setVerticalGroup(
             JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanelClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboSeleccionTipoUsuarioDesdeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelNGrupoCliente)
-                        .addComponent(labelAulaCliente)
-                        .addComponent(jLabelFecha)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(comboSeleccionTipoUsuarioDesdeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(JPanelClienteLayout.createSequentialGroup()
-                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtNumeroGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtFechaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelHora)
-                            .addComponent(labelProfesor)))
-                    .addComponent(btnBuscarSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNumeroGrupo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(JPanelClienteLayout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(labelActividad)
+                                    .addComponent(txtActividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNombreAula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelAulaCliente))
+                                .addGap(31, 31, 31)
+                                .addComponent(labelHora))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanelClienteLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(JPanelClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelFecha)
+                                    .addComponent(txtFechaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(JPanelClienteLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(btnBuscarSesiones, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         comboSeleccionTipoUsuarioDesdeUsuario.getAccessibleContext().setAccessibleName("desplegableTipoAcceso");
         comboSeleccionTipoUsuarioDesdeUsuario.getAccessibleContext().setAccessibleDescription("Permite escoger el tipo de acceso");
         btnSalir.getAccessibleContext().setAccessibleDescription("Sale de la aplicación");
-        txtNumeroGrupo.getAccessibleContext().setAccessibleName("CampoBúsquedaGrupo");
+        txtActividad.getAccessibleContext().setAccessibleName("CampoBúsquedaGrupo");
         txtNombreAula.getAccessibleContext().setAccessibleName("CampoBúsquedaGrupo");
         txtNombreAula.getAccessibleContext().setAccessibleDescription("Número del grupo a buscar");
         txtFechaSesion.getAccessibleContext().setAccessibleName("Entrada Fecha a buscar");
         labelAulaCliente.getAccessibleContext().setAccessibleDescription("Etiqueta en la que se lee \"Aula\". Debajo se puede insertar un nombre de aula para realizar una búsqueda");
         jLabelFecha.getAccessibleContext().setAccessibleDescription("Etiqueta en la que pone fecha. Se espera la fecha a buscar debajo");
-        txtNumeroGrupo1.getAccessibleContext().setAccessibleName("HoraGrupoBuscar");
-        txtNumeroGrupo1.getAccessibleContext().setAccessibleDescription("Campo para introducir la hora a buscar");
-        labelProfesor.getAccessibleContext().setAccessibleDescription("");
-        txtProfesor.getAccessibleContext().setAccessibleName("entradaProfesor");
+        txtHora.getAccessibleContext().setAccessibleName("HoraGrupoBuscar");
+        txtHora.getAccessibleContext().setAccessibleDescription("Campo para introducir la hora a buscar");
         btnBuscarSesiones.getAccessibleContext().setAccessibleName("Boton buscar sesiones");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -627,6 +631,19 @@ public final class VUsuario extends javax.swing.JFrame{
         actualizarBusquedaSesiones();
     }//GEN-LAST:event_btnBuscarSesionesMouseClicked
 
+    private void btnBuscarSesionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarSesionesActionPerformed
+        actualizarBusquedaSesiones();
+        
+    }//GEN-LAST:event_btnBuscarSesionesActionPerformed
+
+    private void txtNombreAulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreAulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreAulaActionPerformed
+
+    private void txtHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHoraActionPerformed
+
 
 
 
@@ -657,19 +674,17 @@ public final class VUsuario extends javax.swing.JFrame{
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel labelActividad;
     private javax.swing.JLabel labelAula;
     private javax.swing.JLabel labelAulaCliente;
     private javax.swing.JLabel labelHora;
-    private javax.swing.JLabel labelNGrupoCliente;
     private javax.swing.JLabel labelNombre;
-    private javax.swing.JLabel labelProfesor;
     private javax.swing.JTable tablaSesionesCliente;
     private javax.swing.JTable tablaSesionesProfesor;
+    private javax.swing.JTextField txtActividad;
     private javax.swing.JTextField txtFechaSesion;
+    private javax.swing.JTextField txtHora;
     private javax.swing.JTextField txtNombreAula;
-    private javax.swing.JTextField txtNumeroGrupo;
-    private javax.swing.JTextField txtNumeroGrupo1;
-    private javax.swing.JTextField txtProfesor;
     // End of variables declaration//GEN-END:variables
 
     public void actualizarNivelAcceso(TipoUsuario nivelAcceso)
@@ -702,9 +717,10 @@ public final class VUsuario extends javax.swing.JFrame{
 
     void actualizarBusquedaSesiones()
     {
-        Integer numeroGrupo = txtNumeroGrupo.getText().isBlank() ? null : Integer.parseInt(txtNumeroGrupo.getText());
-        List <Sesion> sesiones = fa.obtenerSesiones(numeroGrupo,txtNombreAula.getText(), txtFechaSesion.getText(), txtNumeroGrupo1.getText(), txtProfesor.getText());
+
+        String nickname = AutenticacionSingleton.getInstance().getNickname();
         ModeloTablaSesionesClientes m = (ModeloTablaSesionesClientes) tablaSesionesCliente.getModel();
+        List <SesionCliente> sesiones = fa.obtenerSesionesCliente(nickname, txtActividad.getText(), txtNombreAula.getText(), txtFechaSesion.getText(), txtHora.getText());
         m.setFilas(sesiones);
     }
 
