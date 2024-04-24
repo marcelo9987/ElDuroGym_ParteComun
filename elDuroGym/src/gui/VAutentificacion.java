@@ -186,7 +186,7 @@ public final class VAutentificacion extends javax.swing.JDialog {
             System.out.println("Logando con: "+txtUsuario.getText() + " " + Arrays.toString(textoClave.getPassword()));
             fgui.actualizarNivelAccesoMenuPrincipal(fa.getNivelAcceso());
             AutenticacionSingleton.getInstance().setNickname(txtUsuario.getText());
-            AutenticacionSingleton.getInstance().setClave(textoClave.getText());
+            AutenticacionSingleton.getInstance().setClave(new String (textoClave.getPassword()));
             this.dispose();
         }
         else

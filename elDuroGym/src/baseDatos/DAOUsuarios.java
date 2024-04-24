@@ -377,8 +377,7 @@ public class DAOUsuarios extends AbstractDAO {
             if (!hora.isBlank() || !hora.isEmpty()){
                 stmSesionesCliente.setString(index++, hora);
             }
-            
-            System.out.println(stmSesionesCliente.toString());
+
             
             rsSesionesCliente = stmSesionesCliente.executeQuery();
             
