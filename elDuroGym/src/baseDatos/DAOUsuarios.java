@@ -402,7 +402,6 @@ public class DAOUsuarios extends AbstractDAO {
                 System.out.println("Imposible cerrar cursores");
             }
         }
-
         return resultado;
     }
 }
