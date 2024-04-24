@@ -14,6 +14,7 @@ public class DAOGrupo extends AbstractDAO {
         super.setFachadaAplicacion(fa);
     }
 
+    //Inserta un grupo en la base de datos
     public void insertarGrupo(Grupo g) {
         Connection con = null;
         PreparedStatement stmInsertar = null;
@@ -46,6 +47,7 @@ public class DAOGrupo extends AbstractDAO {
         }
     }
 
+    //Elimina un grupo según su identificador
     public void eliminarGrupo(int idGrupo) {
         Connection con = null;
         PreparedStatement stmEliminar = null;
@@ -77,6 +79,7 @@ public class DAOGrupo extends AbstractDAO {
         }
     }
 
+    //Modifica la actividad a realizar de un determinado grupo
     public void modificarGrupo(Grupo grupo) {
         Connection con = null;
         PreparedStatement stmModificar = null;

@@ -26,31 +26,31 @@ public Usuario(String idUsuario, String clave, String nombre, String direccion, 
         this.nickname = nickname;
     }
 
-    public String idUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public String clave() {
+    public String getClave() {
         return clave;
     }
 
-    public String nombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public String direccion() {
+    public String getDireccion() {
         return direccion;
     }
 
-    public String email() {
+    public String getEmail() {
         return email;
     }
 
-    public String dni() {
+    public String getDni() {
         return dni;
     }
 
-    public String nickname() {
+    public String getNickname() {
         return nickname;
     }
 
