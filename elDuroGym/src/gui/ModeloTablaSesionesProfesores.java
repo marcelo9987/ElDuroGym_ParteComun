@@ -72,6 +72,7 @@ public class ModeloTablaProfesor extends AbstractTableModel {
     public boolean isCellEditable(int row, int col) {
         return false;
     }
+    //juan magan
 
     @Override
     public Object getValueAt(int row, int col) {
