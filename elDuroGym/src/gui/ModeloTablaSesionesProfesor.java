@@ -96,7 +96,7 @@ public class ModeloTablaSesionesProfesor extends AbstractTableModel {
         return resultado;
     }
 
-    public void setProfesores(List<SesionProfesor> profesores) {
+    public void setFilas(List<SesionProfesor> profesores) {
         this.sesionesProfesor = profesores;
         fireTableDataChanged();
     }

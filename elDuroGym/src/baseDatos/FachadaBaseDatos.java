@@ -56,6 +56,8 @@ public class FachadaBaseDatos {
 
         this.daoClientes = new DAOClientes(conexion,fa);
 
+        this.daoProfesor = new DAOProfesor(conexion,fa);
+
         } catch (FileNotFoundException f){
             System.out.println(f.getMessage());
             fa.muestraExcepcion(f.getMessage());

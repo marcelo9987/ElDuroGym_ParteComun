@@ -4,6 +4,7 @@ import aplicacion.TipoUsuario;
 import misc.Criptografia;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -162,83 +163,72 @@ public class DAOProfesor extends AbstractDAO {
     }
 
     public List<SesionProfesor> obtenerSesionesProfesor(String nickname, String nombreActividad, String nombreAula, String fecha, String hora, String descripcion) {
-        Connection con;
-        PreparedStatement stmSesionesProfesor= null;
-        ResultSet rsSesionesProfesor;
+        Connection con = null;
+        PreparedStatement stmSesionesProfesor = null;
+        ResultSet rsSesionesProfesor = null;
 
-        List<SesionProfesor> resultado = new java.util.ArrayList<>();
+        List<SesionProfesor> resultado = new ArrayList<>();
         try {
             con = this.getConexion();
-            int index = 1; // Índice inicial para los parámetros
 
-            String consulta = "SELECT "
-                    + "A.Nombre as nombre_aula, "
-                    + "AC.Nombre as nombre_actividad, "
-                    + "DATE(S.fecha_hora_inicio) as fecha, "
-                    + "CONCAT(TO_CHAR(EXTRACT(HOUR FROM S.Fecha_hora_inicio), 'FM00'), ':', TO_CHAR(EXTRACT(MINUTE FROM S.fecha_hora_inicio), 'FM00')) as hora "
-                    + "Sdescripcion as descripcion, "
-                    + "FROM "
-                    + "Sesion as S "
-                    + "JOIN "
-                    + "Grupo as G on S.id_grupo = G.id_grupo "
-                    + "JOIN "
-                    + "Grupo_tiene_profesor as GC on G.id_grupo = GC.id_grupo "
-                    + "JOIN "
-                    + "Profesor as C on GC.id_cliente = C.id_cliente "
-                    + "JOIN "
-                    + "Persona as U on C.id_profesor = U.id_persona "
-                    + "JOIN "
-                    + "Actividad as AC on G.id_actividad = AC.id_actividad "
-                    + "JOIN "
-                    + "Aula as A on S.id_aula = A.id_aula "
-                    + "WHERE "
-                    + "U.nickname = ? ";
+            // Preparar la consulta SQL
+            StringBuilder consulta = new StringBuilder();
+            consulta.append("SELECT A.Nombre as nombre_aula, ")
+                    .append("AC.Nombre as nombre_actividad, ")
+                    .append("DATE(S.fecha_hora_inicio) as fecha, ")
+                    .append("CONCAT(TO_CHAR(EXTRACT(HOUR FROM S.Fecha_hora_inicio), 'FM00'), ':', TO_CHAR(EXTRACT(MINUTE FROM S.fecha_hora_inicio), 'FM00')) as hora, ")
+                    .append("AC.descripcion ")
+                    .append("FROM Sesion as S ")
+                    .append("JOIN Grupo as G on S.id_grupo = G.id_grupo ")
+                    .append("JOIN Grupo_tiene_profesor as GP on G.id_grupo = GP.id_grupo ")
+                    .append("JOIN Profesor as PR on GP.id_profesor = PR.id_profesor ")
+                    .append("JOIN Persona as P on PR.id_profesor = P.id_persona ")
+                    .append("JOIN Actividad as AC on G.id_actividad = AC.id_actividad ")
+                    .append("JOIN Aula as A on S.id_aula = A.id_aula  ")
+                    .append("WHERE P.nickname = ? ");
 
-            if (!nombreActividad.isBlank() || !nombreActividad.isEmpty()) {
-                consulta += "AND AC.nombre = ? ";
+            if (!nombreActividad.isBlank()) {
+                consulta.append("AND AC.nombre = ? ");
             }
-            if (!nombreAula.isBlank() || !nombreAula.isEmpty()) {
-                consulta += "AND A.nombre = ? ";
+            if (!nombreAula.isBlank()) {
+                consulta.append("AND A.nombre = ? ");
             }
-            if (!fecha.isBlank() || !fecha.isEmpty()) {
-                consulta += "AND DATE(S.fecha_hora_inicio) = CAST(? AS DATE) ";
+            if (!fecha.isBlank()) {
+                consulta.append("AND DATE(S.fecha_hora_inicio) = ? ");
             }
-            if (!hora.isBlank() || !hora.isEmpty()) {
-                consulta += "AND TO_CHAR(EXTRACT(HOUR FROM S.Fecha_hora_inicio), 'FM00') || ':' || TO_CHAR(EXTRACT(MINUTE FROM S.Fecha_hora_inicio), 'FM00') = ? ";
+            if (!hora.isBlank()) {
+                consulta.append("AND TO_CHAR(EXTRACT(HOUR FROM S.Fecha_hora_inicio), 'FM00') || ':' || TO_CHAR(EXTRACT(MINUTE FROM S.Fecha_hora_inicio), 'FM00') = ? ");
             }
-            if (!descripcion.isBlank() || !descripcion.isEmpty()){
-                consulta += "AND Sdescripcion = ? ";
+            if (!descripcion.isBlank()) {
+                consulta.append("AND AC.descripcion = ? ");
             }
 
+            stmSesionesProfesor = con.prepareStatement(consulta.toString());
 
-            stmSesionesProfesor = con.prepareStatement(consulta);
-
-
+            // Asignar parámetros
+            int index = 1;
             stmSesionesProfesor.setString(index++, nickname);
-
-
-            if (!nombreActividad.isBlank() || !nombreActividad.isEmpty()) {
+            if (!nombreActividad.isBlank()) {
                 stmSesionesProfesor.setString(index++, nombreActividad);
             }
-
-            if (!nombreAula.isBlank() || !nombreAula.isEmpty()) {
+            if (!nombreAula.isBlank()) {
                 stmSesionesProfesor.setString(index++, nombreAula);
             }
-            if (!fecha.isBlank() || !fecha.isEmpty()) {
-                stmSesionesProfesor.setString(index++, fecha);
+            if (!fecha.isBlank()) {
+                // Suponiendo que 'fecha' está en formato "yyyy-MM-dd"
+                Date fechaDate = Date.valueOf(fecha);
+                stmSesionesProfesor.setDate(index++, fechaDate);
             }
-            if (!hora.isBlank() || !hora.isEmpty()) {
+            if (!hora.isBlank()) {
                 stmSesionesProfesor.setString(index++, hora);
             }
-            if (!descripcion.isBlank() || !descripcion.isEmpty()){
+            if (!descripcion.isBlank()) {
                 stmSesionesProfesor.setString(index++, descripcion);
             }
-
 
             rsSesionesProfesor = stmSesionesProfesor.executeQuery();
 
             while (rsSesionesProfesor.next()) {
-
                 SesionProfesor sesion = new SesionProfesor(
                         rsSesionesProfesor.getString("nombre_actividad"),
                         rsSesionesProfesor.getString("nombre_aula"),
@@ -246,7 +236,6 @@ public class DAOProfesor extends AbstractDAO {
                         rsSesionesProfesor.getString("hora"),
                         rsSesionesProfesor.getString("descripcion")
                 );
-
                 resultado.add(sesion);
             }
         } catch (SQLException e) {
@@ -254,12 +243,17 @@ public class DAOProfesor extends AbstractDAO {
             this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
         } finally {
             try {
-                stmSesionesProfesor.close();
+                // Cerrar recursos
+                if (rsSesionesProfesor != null) {
+                    rsSesionesProfesor.close();
+                }
+                if (stmSesionesProfesor != null) {
+                    stmSesionesProfesor.close();
+                }
             } catch (SQLException e) {
                 System.out.println("Imposible cerrar cursores");
             }
         }
-
         return resultado;
     }
 
