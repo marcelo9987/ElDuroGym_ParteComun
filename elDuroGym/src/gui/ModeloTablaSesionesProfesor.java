@@ -1,17 +1,20 @@
 package gui;
 
 import aplicacion.Profesor;
+import aplicacion.Sesion;
+import aplicacion.SesionProfesor;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
-public class ModeloTablaProfesor extends AbstractTableModel {
-    private List<Profesor> profesores;
+public class ModeloTablaSesionesProfesor extends AbstractTableModel {
+    private List<SesionProfesor> sesionesProfesor;
 
-    public ModeloTablaProfesor() {
-        this.profesores = new ArrayList<>();
+    public ModeloTablaSesionesProfesor() {
+        this.sesionesProfesor = new ArrayList<>();
     }
 
     @Override
@@ -21,7 +24,7 @@ public class ModeloTablaProfesor extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return profesores.size();
+        return sesionesProfesor.size();
     }
 
     @Override
@@ -30,18 +33,15 @@ public class ModeloTablaProfesor extends AbstractTableModel {
 
         switch (col) {
             case 0:
-                nombre = "Nombre";
-                break;
-            case 1:
                 nombre = "Aula";
                 break;
-            case 2:
+            case 1:
                 nombre = "Descripción";
                 break;
-            case 3:
+            case 2:
                 nombre = "Fecha Próxima";
                 break;
-            case 4:
+            case 3:
                 nombre = "Hora";
                 break;
         }
@@ -55,13 +55,12 @@ public class ModeloTablaProfesor extends AbstractTableModel {
         switch (col) {
             case 0:
             case 1:
-            case 2:
                 clase = String.class;
                 break;
-            case 3:
+            case 2:
                 clase = LocalDate.class;
                 break;
-            case 4:
+            case 3:
                 clase = LocalTime.class;
                 break;
         }
@@ -77,34 +76,32 @@ public class ModeloTablaProfesor extends AbstractTableModel {
     @Override
     public Object getValueAt(int row, int col) {
         Object resultado = null;
-        Profesor profesor = profesores.get(row);
+        SesionProfesor sesionProfesor = sesionesProfesor.get(row);
+
 
         switch (col) {
             case 0:
-                resultado = profesor.getNombre();
+                resultado = sesionProfesor.getAula();
                 break;
             case 1:
-                resultado = profesor.getAula();
+                resultado = sesionProfesor.getDescripcion();
                 break;
             case 2:
-                resultado = profesor.getDescripcion();
+                resultado = sesionProfesor.get();
                 break;
             case 3:
-                resultado = profesor.getFechaProxima();
-                break;
-            case 4:
-                resultado = profesor.getHora();
+                resultado = sesionProfesor.getHora();
                 break;
         }
         return resultado;
     }
 
-    public void setProfesores(List<Profesor> profesores) {
-        this.profesores = profesores;
+    public void setProfesores(List<SesionProfesor> profesores) {
+        this.sesionesProfesor = profesores;
         fireTableDataChanged();
     }
 
-    public Profesor obtenerProfesor(int fila) {
-        return profesores.get(fila);
+    public Profesor obtenerSesionProfesor(int fila) {
+        return sesionesProfesor.get(fila);
     }
 }
