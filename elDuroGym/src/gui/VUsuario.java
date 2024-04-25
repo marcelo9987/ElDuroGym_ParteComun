@@ -30,6 +30,7 @@ public final class VUsuario extends javax.swing.JFrame{
         this.fa=fa;
         initComponents();
         posicionamientoVentanas.centrarVentana(this);
+        setSize(600, 476);
     }
 
 
