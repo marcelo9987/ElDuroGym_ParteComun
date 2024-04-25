@@ -9,7 +9,7 @@ import aplicacion.SesionCliente;
 import aplicacion.SesionProfesor;
 import aplicacion.TipoUsuario;
 import aplicacion.Usuario;
-import basedatos.FachadaBaseDatos;
+import baseDatos.FachadaBaseDatos;
 import gui.FachadaGui;
 
 import java.util.List;

@@ -5,6 +5,7 @@
 package baseDatos;
 import aplicacion.*;
 import aplicacion.TipoUsuario;
+import baseDatos.AbstractDAO;
 import misc.Criptografia;
 
 import java.sql.*;

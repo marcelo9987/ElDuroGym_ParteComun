@@ -15,12 +15,12 @@ import java.util.List;
 public class FachadaAplicacion {
 
     gui.FachadaGui fgui;
-    basedatos.FachadaBaseDatos fbd;
+    baseDatos.FachadaBaseDatos fbd;
     GestionUsuarios cu;
     TipoUsuario nivelAcceso;
     public FachadaAplicacion() {
         fgui = new gui.FachadaGui(this);
-        fbd = new basedatos.FachadaBaseDatos(this);
+        fbd = new baseDatos.FachadaBaseDatos(this);
         cu = new GestionUsuarios(fgui,fbd);
     }
 
