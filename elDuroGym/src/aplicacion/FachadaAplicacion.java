@@ -62,4 +62,8 @@ public class FachadaAplicacion {
     public List<SesionCliente> obtenerSesionesCliente (String nickname, String nombreActividad, String nombreAula, String fecha, String hora){
         return cu.obtenerSesionesCliente(nickname, nombreActividad, nombreAula, fecha, hora);
     }
+
+    public List<SesionProfesor> obtenerSesionesProfesor (String nickname, String nombreActividad, String nombreAula, String fecha, String hora, String descripcion){
+        return cu.obtenerSesionesProfesor(nickname, nombreActividad, nombreAula, fecha, hora, descripcion);
+    }
 }

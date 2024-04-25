@@ -19,7 +19,7 @@ public class ModeloTablaSesionesProfesor extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5; // Número de columnas
+        return 4; // Número de columnas
     }
 
     @Override
@@ -36,13 +36,13 @@ public class ModeloTablaSesionesProfesor extends AbstractTableModel {
                 nombre = "Aula";
                 break;
             case 1:
-                nombre = "Descripción";
-                break;
-            case 2:
                 nombre = "Fecha Próxima";
                 break;
-            case 3:
+            case 2:
                 nombre = "Hora";
+                break;
+            case 3:
+                nombre = "Descripcion";
                 break;
         }
         return nombre;
@@ -54,14 +54,15 @@ public class ModeloTablaSesionesProfesor extends AbstractTableModel {
 
         switch (col) {
             case 0:
-            case 1:
                 clase = String.class;
-                break;
-            case 2:
+            case 1:
                 clase = LocalDate.class;
                 break;
-            case 3:
+            case 2:
                 clase = LocalTime.class;
+                break;
+            case 3:
+                clase = String.class;
                 break;
         }
         return clase;
@@ -71,7 +72,6 @@ public class ModeloTablaSesionesProfesor extends AbstractTableModel {
     public boolean isCellEditable(int row, int col) {
         return false;
     }
-    //juan magan
 
     @Override
     public Object getValueAt(int row, int col) {
@@ -84,13 +84,13 @@ public class ModeloTablaSesionesProfesor extends AbstractTableModel {
                 resultado = sesionProfesor.getNombreAula();
                 break;
             case 1:
-                resultado = sesionProfesor.ge();
-                break;
-            case 2:
                 resultado = sesionProfesor.getFecha();
                 break;
-            case 3:
+            case 2:
                 resultado = sesionProfesor.getHora();
+                break;
+            case 3:
+                resultado = sesionProfesor.getDescripcion();
                 break;
         }
         return resultado;
@@ -101,7 +101,7 @@ public class ModeloTablaSesionesProfesor extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public Profesor obtenerSesionProfesor(int fila) {
+    public SesionProfesor obtenerSesionProfesor(int fila) {
         return sesionesProfesor.get(fila);
     }
 }

@@ -6,6 +6,7 @@ package controladores;
 
 import aplicacion.Sesion;
 import aplicacion.SesionCliente;
+import aplicacion.SesionProfesor;
 import aplicacion.TipoUsuario;
 import aplicacion.Usuario;
 import basedatos.FachadaBaseDatos;
@@ -42,15 +43,7 @@ public class GestionUsuarios {
           default -> TipoUsuario.NO_DEFINIDO;
       };
   }
-  
-  
-    
-   
-    
-   
-    
-     
-   
+
     
     public java.util.List<Usuario> obtenerUsuarios(String id, String nombre){
         return fbd.consultarUsuarios(id,nombre);
@@ -63,4 +56,9 @@ public class GestionUsuarios {
     public List<SesionCliente> obtenerSesionesCliente (String nickname, String nombreActividad, String nombreAula, String fecha, String hora){
         return fbd.obtenerSesionesCliente(nickname, nombreActividad, nombreAula, fecha, hora);
     }
+
+    public List<SesionProfesor> obtenerSesionesProfesor (String nickname, String nombreActividad, String nombreAula, String fecha, String hora, String descripcion){
+        return fbd.obtenerSesionesProfesor(nickname, nombreActividad, nombreAula, fecha, hora,descripcion);
+    }
+
 }

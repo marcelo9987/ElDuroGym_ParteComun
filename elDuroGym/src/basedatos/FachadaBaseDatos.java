@@ -4,10 +4,8 @@
  */
 package basedatos;
 
-import aplicacion.FachadaAplicacion;
-import aplicacion.Sesion;
-import aplicacion.SesionCliente;
-import aplicacion.Usuario;
+import aplicacion.*;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,7 +21,8 @@ public class FachadaBaseDatos {
     private java.sql.Connection conexion;
     private DAOUsuarios daoUsuarios;
     private DAOClientes daoClientes;
-    
+    private DAOProfesor daoProfesor;
+
     public FachadaBaseDatos (FachadaAplicacion fa){
         
         Properties configuracion = new Properties();
@@ -86,6 +85,10 @@ public class FachadaBaseDatos {
     }
     
     public List<SesionCliente> obtenerSesionesCliente (String nickname, String nombreActividad, String nombreAula, String fecha, String hora){
-        return daoUsuarios.obtenerSesionesCliente(nickname, nombreActividad, nombreAula, fecha, hora);
+        return daoClientes.obtenerSesionesCliente(nickname, nombreActividad, nombreAula, fecha, hora);
+    }
+
+    public List<SesionProfesor> obtenerSesionesProfesor (String nickname, String nombreActividad, String nombreAula, String fecha, String hora, String descripcion){
+        return daoProfesor.obtenerSesionesProfesor(nickname, nombreActividad, nombreAula, fecha, hora, descripcion);
     }
 }
