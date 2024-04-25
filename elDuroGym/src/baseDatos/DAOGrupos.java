@@ -1,16 +1,17 @@
-package basedatos;
+package baseDatos;
 import aplicacion.*;
+import aplicacion.Grupo;
 
 import java.sql.*;
 /**
  *
  * @author basesdatos
  */
-public class DAOGrupo extends AbstractDAO {
+public class DAOGrupos extends AbstractDAOs {
 
 
 
-    public DAOGrupo(Connection conexion, aplicacion.FachadaAplicacion fa) {
+    public DAOGrupos(Connection conexion, aplicacion.FachadaAplicacion fa) {
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
     }

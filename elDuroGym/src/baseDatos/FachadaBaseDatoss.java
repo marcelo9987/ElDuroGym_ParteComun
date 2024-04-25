@@ -2,9 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package basedatos;
+package baseDatos;
 
 import aplicacion.*;
+import aplicacion.FachadaAplicacion;
+import aplicacion.Sesion;
+import aplicacion.SesionCliente;
+import aplicacion.SesionProfesor;
+import aplicacion.Usuario;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,14 +21,14 @@ import java.util.Properties;
  *
  * @author alumnogreibd
  */
-public class FachadaBaseDatos {
+public class FachadaBaseDatoss {
     private final FachadaAplicacion fa;
     private java.sql.Connection conexion;
     private DAOUsuarios daoUsuarios;
     private DAOClientes daoClientes;
     private DAOProfesor daoProfesor;
 
-    public FachadaBaseDatos (FachadaAplicacion fa){
+    public FachadaBaseDatoss (FachadaAplicacion fa){
         
         Properties configuracion = new Properties();
         this.fa=fa;

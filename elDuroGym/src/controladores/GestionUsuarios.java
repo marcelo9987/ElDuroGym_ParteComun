@@ -9,7 +9,7 @@ import aplicacion.SesionCliente;
 import aplicacion.SesionProfesor;
 import aplicacion.TipoUsuario;
 import aplicacion.Usuario;
-import baseDatos.FachadaBaseDatos;
+import baseDatos.FachadaBaseDatoss;
 import gui.FachadaGui;
 
 import java.util.List;
@@ -20,10 +20,10 @@ import java.util.List;
  */
 public class GestionUsuarios {
      FachadaGui fgui;
-    FachadaBaseDatos fbd;
+    FachadaBaseDatoss fbd;
     
    
-    public GestionUsuarios(FachadaGui fgui, FachadaBaseDatos fbd){
+    public GestionUsuarios(FachadaGui fgui, FachadaBaseDatoss fbd){
      this.fgui=fgui;
      this.fbd=fbd;
     }  

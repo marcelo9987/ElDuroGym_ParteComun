@@ -2,18 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package basedatos;
+package baseDatos;
 
 import aplicacion.FachadaAplicacion;
+import aplicacion.FachadaAplicacion;
 
-import java.sql.Connection;
+import java.sql.*;
 
 
 /**
  *
  * @author alumnogreibd
  */
-public abstract class AbstractDAO
+public abstract class AbstractDAOs
 {
     public static final String IMPOSIBLE_CERRAR_CONEXION = "Imposible cerrar conexión";
     public static final String IMPOSIBLE_CERRAR_CURSORES = "Imposible cerrar cursores";

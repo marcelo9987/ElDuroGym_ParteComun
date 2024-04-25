@@ -1,7 +1,7 @@
 package baseDatos;
 
 import aplicacion.SesionCliente;
-import baseDatos.AbstractDAO;
+import baseDatos.AbstractDAOs;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class DAOClientes extends AbstractDAO
+public class DAOClientes extends AbstractDAOs
 {
     public DAOClientes(Connection conexion, aplicacion.FachadaAplicacion fa)
     {
