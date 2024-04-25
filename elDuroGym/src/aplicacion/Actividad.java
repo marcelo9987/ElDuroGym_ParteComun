@@ -6,19 +6,19 @@ package aplicacion;
 
 
 public class Actividad {
-    private int id_actividad;
-    private String nombre;
-    private String descripcion;
-    private String tipo;
+    private final int idActividad;
+    private final String nombre;
+    private final String descripcion;
+    private final String tipo;
     
-    public Actividad(int id_actividad,String nombre,String descripcion,String tipo){
-        this.id_actividad = id_actividad;
+    public Actividad(int idActividad,String nombre,String descripcion,String tipo){
+        this.idActividad = idActividad;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.tipo = tipo;
     }
-    public int getId_Actividad(){
-        return this.id_actividad;
+    public int getIdActividad(){
+        return this.idActividad;
     }
     public String getNombre(){
          return this.nombre;

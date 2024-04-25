@@ -1,7 +1,5 @@
-package baseDatos;
+package basedatos;
 import aplicacion.*;
-import aplicacion.TipoUsuario;
-import misc.Criptografia;
 
 import java.sql.*;
 /**
@@ -9,6 +7,9 @@ import java.sql.*;
  * @author basesdatos
  */
 public class DAOGrupo extends AbstractDAO {
+
+
+
     public DAOGrupo(Connection conexion, aplicacion.FachadaAplicacion fa) {
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
@@ -22,8 +23,8 @@ public class DAOGrupo extends AbstractDAO {
         try {
             con = this.getConexion();
             stmInsertar = con.prepareStatement("INSERT INTO Grupo (id_grupo, id_actividad) VALUES (?, ?)");
-            stmInsertar.setInt(1, g.getId_Grupo());
-            stmInsertar.setInt(2, g.getActividad().getId_Actividad());
+            stmInsertar.setInt(1, g.getIdGrupo());
+            stmInsertar.setInt(2, g.getActividad().getIdActividad());
             stmInsertar.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -35,13 +36,13 @@ public class DAOGrupo extends AbstractDAO {
                     stmInsertar.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Imposible cerrar cursores");
+                System.out.println(IMPOSIBLE_CERRAR_CURSORES);
             }
             if (con != null) {
                 try {
                     con.close();
                 } catch (SQLException e) {
-                    System.out.println("Imposible cerrar conexión");
+                    System.out.println(IMPOSIBLE_CERRAR_CONEXION);
                 }
             }
         }
@@ -67,13 +68,13 @@ public class DAOGrupo extends AbstractDAO {
                     stmEliminar.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Imposible cerrar cursores");
+                System.out.println(IMPOSIBLE_CERRAR_CURSORES);
             }
             if (con != null) {
                 try {
                     con.close();
                 } catch (SQLException e) {
-                    System.out.println("Imposible cerrar conexión");
+                    System.out.println(IMPOSIBLE_CERRAR_CONEXION);
                 }
             }
         }
@@ -87,8 +88,8 @@ public class DAOGrupo extends AbstractDAO {
         try {
             con = this.getConexion();
             stmModificar = con.prepareStatement("UPDATE Grupo SET id_actividad = ? WHERE id_grupo = ?");
-            stmModificar.setInt(1, grupo.getActividad().getId_Actividad());
-            stmModificar.setInt(2, grupo.getId_Grupo());
+            stmModificar.setInt(1, grupo.getActividad().getIdActividad());
+            stmModificar.setInt(2, grupo.getIdGrupo());
             stmModificar.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -100,13 +101,13 @@ public class DAOGrupo extends AbstractDAO {
                     stmModificar.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Imposible cerrar cursores");
+                System.out.println(IMPOSIBLE_CERRAR_CURSORES);
             }
             if (con != null) {
                 try {
                     con.close();
                 } catch (SQLException e) {
-                    System.out.println("Imposible cerrar conexión");
+                    System.out.println(IMPOSIBLE_CERRAR_CONEXION);
                 }
             }
         }

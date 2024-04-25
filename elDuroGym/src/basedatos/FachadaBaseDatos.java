@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package baseDatos;
+package basedatos;
 
 import aplicacion.FachadaAplicacion;
 import aplicacion.Sesion;
@@ -11,9 +11,6 @@ import aplicacion.Usuario;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Properties;
 
@@ -48,7 +45,7 @@ public class FachadaBaseDatos {
             this.conexion=java.sql.DriverManager.getConnection("jdbc:"+gestor+"://"+
                     configuracion.getProperty("servidor")+":"+
                     configuracion.getProperty("puerto")+"/"+
-                    configuracion.getProperty("baseDatos"),
+                    configuracion.getProperty("basedatos"),
                     usuario);
 
         this.daoUsuarios = new DAOUsuarios(conexion,fa);

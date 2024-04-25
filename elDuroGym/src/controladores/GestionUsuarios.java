@@ -8,11 +8,8 @@ import aplicacion.Sesion;
 import aplicacion.SesionCliente;
 import aplicacion.TipoUsuario;
 import aplicacion.Usuario;
-import baseDatos.DAOUsuarios;
-import baseDatos.FachadaBaseDatos;
+import basedatos.FachadaBaseDatos;
 import gui.FachadaGui;
-import java.time.LocalTime;
-import java.util.Date;
 
 import java.util.List;
 
