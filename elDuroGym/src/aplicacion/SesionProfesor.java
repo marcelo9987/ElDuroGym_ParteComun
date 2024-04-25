@@ -8,12 +8,14 @@ public class SesionProfesor {
     private String nombreAula;
     private String  fecha;
     private String hora;
+    private String descripcion;
 
-    public SesionProfesor(String nombreActividad, String nombreAula, String fecha, String hora) {
+    public SesionProfesor(String nombreActividad, String nombreAula, String fecha, String hora, String descripcion) {
         this.nombreActividad = nombreActividad;
         this.nombreAula = nombreAula;
         this.fecha = fecha;
         this.hora = hora;
+        this.descripcion = descripcion;
     }
 
     public String getNombreActividad() {
@@ -46,6 +48,14 @@ public class SesionProfesor {
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 

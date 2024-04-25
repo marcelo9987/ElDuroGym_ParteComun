@@ -81,13 +81,13 @@ public class ModeloTablaSesionesProfesor extends AbstractTableModel {
 
         switch (col) {
             case 0:
-                resultado = sesionProfesor.getAula();
+                resultado = sesionProfesor.getNombreAula();
                 break;
             case 1:
-                resultado = sesionProfesor.getDescripcion();
+                resultado = sesionProfesor.ge();
                 break;
             case 2:
-                resultado = sesionProfesor.get();
+                resultado = sesionProfesor.getFecha();
                 break;
             case 3:
                 resultado = sesionProfesor.getHora();

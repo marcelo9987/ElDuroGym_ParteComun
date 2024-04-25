@@ -4,6 +4,8 @@ import aplicacion.TipoUsuario;
 import misc.Criptografia;
 
 import java.sql.*;
+import java.util.List;
+
 /**
  *
  * @author basesdatos
@@ -55,6 +57,7 @@ public class DAOProfesor extends AbstractDAO {
         return gruposResultado;
     }
 
+    @Deprecated
     public java.util.List<Sesion> consultarSesiones(Integer id_profesor){
         java.util.List<Sesion> resultado = new java.util.ArrayList<>();
         Connection con = null;
@@ -155,6 +158,108 @@ public class DAOProfesor extends AbstractDAO {
                 }
             }
         }
+        return resultado;
+    }
+
+    public List<SesionProfesor> obtenerSesionesProfesor(String nickname, String nombreActividad, String nombreAula, String fecha, String hora, String descripcion) {
+        Connection con;
+        PreparedStatement stmSesionesProfesor= null;
+        ResultSet rsSesionesProfesor;
+
+        List<SesionProfesor> resultado = new java.util.ArrayList<>();
+        try {
+            con = this.getConexion();
+            int index = 1; // Índice inicial para los parámetros
+
+            String consulta = "SELECT "
+                    + "A.Nombre as nombre_aula, "
+                    + "AC.Nombre as nombre_actividad, "
+                    + "DATE(S.fecha_hora_inicio) as fecha, "
+                    + "CONCAT(TO_CHAR(EXTRACT(HOUR FROM S.Fecha_hora_inicio), 'FM00'), ':', TO_CHAR(EXTRACT(MINUTE FROM S.fecha_hora_inicio), 'FM00')) as hora "
+                    + "Sdescripcion as descripcion, "
+                    + "FROM "
+                    + "Sesion as S "
+                    + "JOIN "
+                    + "Grupo as G on S.id_grupo = G.id_grupo "
+                    + "JOIN "
+                    + "Grupo_tiene_profesor as GC on G.id_grupo = GC.id_grupo "
+                    + "JOIN "
+                    + "Profesor as C on GC.id_cliente = C.id_cliente "
+                    + "JOIN "
+                    + "Persona as U on C.id_profesor = U.id_persona "
+                    + "JOIN "
+                    + "Actividad as AC on G.id_actividad = AC.id_actividad "
+                    + "JOIN "
+                    + "Aula as A on S.id_aula = A.id_aula "
+                    + "WHERE "
+                    + "U.nickname = ? ";
+
+            if (!nombreActividad.isBlank() || !nombreActividad.isEmpty()) {
+                consulta += "AND AC.nombre = ? ";
+            }
+            if (!nombreAula.isBlank() || !nombreAula.isEmpty()) {
+                consulta += "AND A.nombre = ? ";
+            }
+            if (!fecha.isBlank() || !fecha.isEmpty()) {
+                consulta += "AND DATE(S.fecha_hora_inicio) = CAST(? AS DATE) ";
+            }
+            if (!hora.isBlank() || !hora.isEmpty()) {
+                consulta += "AND TO_CHAR(EXTRACT(HOUR FROM S.Fecha_hora_inicio), 'FM00') || ':' || TO_CHAR(EXTRACT(MINUTE FROM S.Fecha_hora_inicio), 'FM00') = ? ";
+            }
+            if (!descripcion.isBlank() || !descripcion.isEmpty()){
+                consulta += "AND Sdescripcion = ? ";
+            }
+
+
+            stmSesionesProfesor = con.prepareStatement(consulta);
+
+
+            stmSesionesProfesor.setString(index++, nickname);
+
+
+            if (!nombreActividad.isBlank() || !nombreActividad.isEmpty()) {
+                stmSesionesProfesor.setString(index++, nombreActividad);
+            }
+
+            if (!nombreAula.isBlank() || !nombreAula.isEmpty()) {
+                stmSesionesProfesor.setString(index++, nombreAula);
+            }
+            if (!fecha.isBlank() || !fecha.isEmpty()) {
+                stmSesionesProfesor.setString(index++, fecha);
+            }
+            if (!hora.isBlank() || !hora.isEmpty()) {
+                stmSesionesProfesor.setString(index++, hora);
+            }
+            if (!descripcion.isBlank() || !descripcion.isEmpty()){
+                stmSesionesProfesor.setString(index++, descripcion);
+            }
+
+
+            rsSesionesProfesor = stmSesionesProfesor.executeQuery();
+
+            while (rsSesionesProfesor.next()) {
+
+                SesionProfesor sesion = new SesionProfesor(
+                        rsSesionesProfesor.getString("nombre_actividad"),
+                        rsSesionesProfesor.getString("nombre_aula"),
+                        rsSesionesProfesor.getString("fecha"),
+                        rsSesionesProfesor.getString("hora"),
+                        rsSesionesProfesor.getString("descripcion")
+                );
+
+                resultado.add(sesion);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            this.getFachadaAplicacion().muestraExcepcion(e.getMessage());
+        } finally {
+            try {
+                stmSesionesProfesor.close();
+            } catch (SQLException e) {
+                System.out.println("Imposible cerrar cursores");
+            }
+        }
+
         return resultado;
     }
 
