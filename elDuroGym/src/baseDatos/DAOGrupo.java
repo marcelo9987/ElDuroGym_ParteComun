@@ -7,11 +7,11 @@ import java.sql.*;
  *
  * @author basesdatos
  */
-public class DAOGrupos extends AbstractDAOs {
+public class DAOGrupo extends AbstractDAO {
 
 
 
-    public DAOGrupos(Connection conexion, aplicacion.FachadaAplicacion fa) {
+    public DAOGrupo(Connection conexion, aplicacion.FachadaAplicacion fa) {
         super.setConexion(conexion);
         super.setFachadaAplicacion(fa);
     }

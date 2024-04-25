@@ -5,7 +5,7 @@
 package baseDatos;
 import aplicacion.*;
 import aplicacion.TipoUsuario;
-import baseDatos.AbstractDAOs;
+import baseDatos.AbstractDAO;
 import misc.Criptografia;
 
 import java.sql.*;
@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author basesdatos
  */
-public class DAOUsuarios extends AbstractDAOs {
+public class DAOUsuarios extends AbstractDAO {
 
     public DAOUsuarios(Connection conexion, aplicacion.FachadaAplicacion fa) {
         super.setConexion(conexion);

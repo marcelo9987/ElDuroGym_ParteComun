@@ -14,7 +14,7 @@ import java.sql.*;
  *
  * @author alumnogreibd
  */
-public abstract class AbstractDAOs
+public abstract class AbstractDAO
 {
     public static final String IMPOSIBLE_CERRAR_CONEXION = "Imposible cerrar conexión";
     public static final String IMPOSIBLE_CERRAR_CURSORES = "Imposible cerrar cursores";

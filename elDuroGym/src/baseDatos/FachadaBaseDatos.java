@@ -21,14 +21,14 @@ import java.util.Properties;
  *
  * @author alumnogreibd
  */
-public class FachadaBaseDatoss {
+public class FachadaBaseDatos {
     private final FachadaAplicacion fa;
     private java.sql.Connection conexion;
     private DAOUsuarios daoUsuarios;
     private DAOClientes daoClientes;
     private DAOProfesor daoProfesor;
 
-    public FachadaBaseDatoss (FachadaAplicacion fa){
+    public FachadaBaseDatos (FachadaAplicacion fa){
         
         Properties configuracion = new Properties();
         this.fa=fa;
