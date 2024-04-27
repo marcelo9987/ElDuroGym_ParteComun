@@ -26,7 +26,7 @@ INSERT INTO Persona (nickname, nombre, dni, correo, domicilio, contrasenha) VALU
 INSERT INTO Persona (nickname, nombre, dni, correo, domicilio, contrasenha) VALUES ('gustavo_cg', 'Gustavo Cid Gutierrez', '73445223J', 'gustavo.cid@gmail.com', 'C. Juan XXIII, 12, L`Hospitalet de Llobregat, 08901, Barcelona', 'CzMRWECZNMrDqn1GURilyA==');                -- Q&d3gfldgzK8q
 INSERT INTO Persona (nickname, nombre, dni, correo, domicilio, contrasenha) VALUES ('maria_gt', 'Maria Gloria Tejo', '01474923W', 'maria.gloria@gmail.com', 'C. de Millares, 8, Jesús, 46007, Valencia', '2a92rXX3r6Il2nNoEgTKOQ==');                                          -- ,csA,T.n^VapF
 INSERT INTO Persona (nickname, nombre, dni, correo, domicilio, contrasenha) VALUES ('pablo_tl', 'Pablo Trillo Louzao', '17316116Z', 'pablo.trillo@gmail.com', 'C. Echegaray, 1, Nervión, 41005 Sevilla', 'G3J1vhuZZEatbF9kAdj+hQ==');                                          -- vCBc5LEHOE;kD
-INSERT INTO Persona (nickname, nombre, dni, correo, domicilio, contrasenha) VALUES ('edgar_mn', 'Edgar Moreno Navarro', '28812101R', 'edgar.moreno@gmail.com', 'C. Sta. Justa, 5, Centro, Gijón, 33208, Asturias', 'Ks!KL$kLBl}+c');                                           -- MkVK2XAaAFUfdlk/r0BLfw==
+INSERT INTO Persona (nickname, nombre, dni, correo, domicilio, contrasenha) VALUES ('edgar_mn', 'Edgar Moreno Navarro', '28812101R', 'edgar.moreno@gmail.com', 'C. Sta. Justa, 5, Centro, Gijón, 33208, Asturias', 'MkVK2XAaAFUfdlk/r0BLfw==');                                           -- Ks!KL$kLBl}+c
 
 INSERT INTO Administrador (id_administrador) VALUES (1);
 INSERT INTO Administrador (id_administrador) VALUES (2);
